@@ -413,7 +413,7 @@ let onSubmit=()=>{
 ```
 
 ```html
-  <FormKit type="el-form" v-model="data" :submit="onSubmit">
+  <FormKit type="el-form" v-model="data" @submit="onSubmit">
     ...   
   </FormKit>
 ```
