@@ -31,5 +31,6 @@
     "dist"
   ],
   "module": "./dist/formkit-element-plus.js",
+  "main": "./dist/formkit-element-plus.js",
   "license": "MIT"
 }
