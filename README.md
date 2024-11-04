@@ -44,61 +44,12 @@ app.use(plugin, defaultConfig({
 
 ### Basic
 
-```html
-  <FormKit type="form" v-model="data">
-
-      <FormKit type="el-input" name="input4" label="el-input" validation="required" />
-
-      <FormKit type="el-input" name="input5" label="el-input (placeholder)" validation="required"
-        placeholder="this is a placeholder" clearable />
-
-      <FormKit type="el-password" name="password1" label="el-password" validation="required" show-password clearable placeholder="this is a password" />
-
-      <FormKit type="el-textarea" name="textarea" label="el-textarea" placeholder="this is a textarea" />
-
-      <FormKit type="el-select" name="select2" label="el-select" clearable :options="{
-        mercury: 'Mercury',
-        venus: 'Venus',
-        earth: 'Earth',
-        mars: 'Mars',
-        jupiter: 'Jupiter',
-        saturn: 'Saturn',
-        uranus: 'Uranus',
-        neptune: 'Neptune'
-      }" />
-
-      <FormKit type="el-select" name="select2" label="el-select (multiple)" :options="{
-        mercury: 'Mercury',
-        venus: 'Venus',
-        earth: 'Earth',
-        mars: 'Mars',
-        jupiter: 'Jupiter',
-        saturn: 'Saturn',
-        uranus: 'Uranus',
-        neptune: 'Neptune'
-      }" multiple />
-
-      <FormKit type="el-rate" name="rate2" label="el-rate" />
-
-      <FormKit type="el-switch" name="switch3" label="el-switch" />
-
-      <FormKit type="el-date-picker" name="date3" label="el-date-picker" />
-      <FormKit type="el-time-picker" name="time2" label="el-time-picker" />
-      <FormKit type="el-color-picker" name="color12" label="el-color-picker" />
-    </FormKit>
-```
-
-<p>
-When using attributes `form-item` the component will be wrapped in a <a href="https://element-plus.org/en-US/component/form.html">el-form-item</a> component.
-
-#### el-form-item preivew
-
 <img src="https://raw.githubusercontent.com/mathsgod/formkit-element/main/preview/formItem.png" alt="preview" />
 
 
 ```typescript
  <FormKit type="el-form" v-model="data" ref="elf" id="elform">
-      <FormKit type="el-input" label="input3" name="input3" validation="required" placeholder="testing3" clearable form-item />
+      <FormKit type="el-input" label="input3" name="input3" validation="required" placeholder="testing3" clearable />
 
       <FormKit type="el-select" label="Select" name="select" :options="{
         mercury: 'Mercury',
@@ -110,14 +61,14 @@ When using attributes `form-item` the component will be wrapped in a <a href="ht
         uranus: 'Uranus',
         neptune: 'Neptune',
       }" 
-      validation="required" clearable placeholder="select placeholder" filterable multiple form-item />
+      validation="required" clearable placeholder="select placeholder" filterable multiple />
 
-      <FormKit type="el-checkbox" label="Checkbox1" name="cb1" validation="required" form-item/>
+      <FormKit type="el-checkbox" label="Checkbox1" name="cb1" validation="required"/>
 
-      <FormKit type="el-rate" label="Rate" name="rate1" form-item/>
-      <FormKit type="el-switch" label="Switch" name="switch1" form-item/>
-      <FormKit type="el-time-picker" label="Time Picker 1" name="time_picker_1" form-item/>
-      <FormKit type="el-input-number" label="input nubmer 1" name="input_number_1" form-item/>
+      <FormKit type="el-rate" label="Rate" name="rate1"/>
+      <FormKit type="el-switch" label="Switch" name="switch1"/>
+      <FormKit type="el-time-picker" label="Time Picker 1" name="time_picker_1"/>
+      <FormKit type="el-input-number" label="input nubmer 1" name="input_number_1"/>
 
       <FormKit type="el-radio-group" label="Radio Group" name="radio1" :options="{
         mercury: 'Mercury',
@@ -128,7 +79,7 @@ When using attributes `form-item` the component will be wrapped in a <a href="ht
         saturn: 'Saturn',
         uranus: 'Uranus',
         neptune: 'Neptune',
-      }" validation="required" form-item/>
+      }" validation="required"/>
 
 
       <FormKit type="el-slider" label="Slider1" name="slider1" />
@@ -371,7 +322,7 @@ let data = [{
 </script>
 
 <template>
-    <form-kit type="form" v-model="form">
+    <form-kit type="el-form" v-model="form">
         <form-kit type="el-tree-select" name="treeselect" :data="data" label="el-tree-select" :render-after-expand="false" />
 
         <form-kit type="el-tree-select" name="treeselect2" :data="data" label="el-tree-select (checkbox)" show-checkbox :render-after-expand="false" />

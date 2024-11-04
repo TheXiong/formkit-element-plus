@@ -43,10 +43,10 @@ export const createElementPlugin = (): FormKitPlugin => {
         let type = node.props.type + '';
         type = type.replace(/[A-Z]/g, (m: string) => "-" + m.toLowerCase());
 
-        let create: any = createInput;
-        if (node.props.attrs["form-item"] !== undefined || node.props.attrs["formItem"] !== undefined) {
-            create = createFormItemInput;
-        }
+        let create: any = createFormItemInput;
+        // if (node.props.attrs["form-item"] !== undefined || node.props.attrs["formItem"] !== undefined) {
+        //     create = createFormItemInput;
+        // }
 
         switch (type) {
             case "el-checkbox-group":
