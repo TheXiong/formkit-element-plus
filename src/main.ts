@@ -17,13 +17,15 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 
-import { createElementPlugin } from "./components";
+import { ElementPlusInputs } from "./components";
 import { createOptionsLoaderPlugin } from "./plugins/optionsLoaderPlugin";
-
 
 app.use(ElementPlus)
 app.use(plugin, defaultConfig({
-    plugins: [createElementPlugin(), createOptionsLoaderPlugin()]
+    plugins: [ createOptionsLoaderPlugin() ],
+    inputs: {
+        ...ElementPlusInputs
+    }
 }))
 
 import { createRouter, createWebHistory } from 'vue-router'

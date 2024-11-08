@@ -48,9 +48,9 @@ let submitForm = () => {
 
 };
 
-const optionsLoader = ()=>{
-  return new Promise((resolve)=>{
-    setTimeout(()=>{
+const optionsLoader = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
       resolve({
         mercury: 'Mercury',
         venus: 'Venus',
@@ -61,7 +61,7 @@ const optionsLoader = ()=>{
         uranus: 'Uranus',
         neptune: 'Neptune'
       })
-    },3000)
+    }, 3000)
   })
 }
 
@@ -71,7 +71,26 @@ const optionsLoader = ()=>{
 
 <template>
   <div>
+    <FormKitSchema :schema="[
+      {
+        name: 'xxxx',
+        label: 'xxs',
+        $formkit: 'el-select',
+        options: [
+          {
+            label: 'a',
+            value: 1
+          },
+          {
+            label: 'b',
+            value: 2
+          }
+        ],
+      }]" />
+
+
     <FormKit type="el-form" v-model="data" :submit="submitForm">
+
       <FormKit type="el-input" name="input1" label="elInput" />
       <FormKit type="el-upload" name="input2" label="elUpload">
         <el-button size="small" type="primary">Click to upload</el-button>
@@ -92,7 +111,8 @@ const optionsLoader = ()=>{
 
     <FormKit type="form" v-model="data">
 
-      <FormKit type="el-input" name="input4" label="elInput" validation="required" help="this is input help" prepend="Plus" suffixIcon="Plus" />
+      <FormKit type="el-input" name="input4" label="elInput" validation="required" help="this is input help"
+        prepend="Plus" suffixIcon="Plus" />
 
       <FormKit type="el-input" name="input5" label="elInput (placeholder)" validation="required"
         placeholder="this is a placeholder" clearable />
@@ -102,7 +122,8 @@ const optionsLoader = ()=>{
 
       <FormKit type="el-textarea" name="textarea" label="elTextarea" placeholder="this is a textarea" />
 
-      <FormKit type="el-select" name="select21" label="hhh" clearable :optionsDepIds="['select2']" :optionsLoader="optionsLoader" />
+      <FormKit type="el-select" name="select21" label="hhh" clearable :optionsDepIds="['select2']"
+        :optionsLoader="optionsLoader" />
       <FormKit type="el-select" name="select2" label="el-select" clearable :options="{
         mercury: 'Mercury',
         venus: 'Venus',
