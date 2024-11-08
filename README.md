@@ -8,35 +8,36 @@ Most of the components are based on <a href="https://element-plus.org/">Element 
 
 <img src="https://raw.githubusercontent.com/mathsgod/formkit-element/main/preview/ui.png" alt="preview" />
 
-## Setup
-
+# install
 <p>
-1. This library require <a href="https://element-plus.org/">Element plus</a> and <a href="https://formkit.com/">FormKit</a> to be installed.
+This library require <a href="https://element-plus.org/">Element plus</a> and <a href="https://formkit.com/">FormKit</a> to be installed.
 </p>
 
-If you are using nuxt, you can use <a href="https://formkit.com/essentials/installation">FormKit nuxt module</a> to install FormKit.
-
-<p>
-2. Create formkit.config.ts if using nuxt
-</p>
-
-```typescript
-import { DefaultConfigOptions } from '@formkit/vue'
-import { createElementPlugin } from 'formkit-element-plus'
-
-const config: DefaultConfigOptions = {
-    plugins: [createElementPlugin()]
-}
+```shell
+npm i element-plus
+npm i @formkit/vue
+npm i @formkit/i18n
+npm i formkit-element-plus
 ```
 
-1. or direct setup in main.ts
+## Setup
+
+direct setup in main.ts
 ```typescript
+import { plugin, defaultConfig } from '@formkit/vue'
+import { ElementPlusInputs } from "formkit-element-plus";
+import { zh } from '@formkit/i18n'
+import '@formkit/themes/genesis'
+
 const app = createApp(App);
 
-import { plugin, defaultConfig } from '@formkit/vue'
-import { createElementPlugin } from "formkit-element-plus";
 app.use(plugin, defaultConfig({
-    plugins: [createElementPlugin()]
+    // set language
+    locales: { zh },
+    locale: 'zh',
+    inputs: {
+        ...ElementPlusInputs
+    }
 }))
 ```
 
