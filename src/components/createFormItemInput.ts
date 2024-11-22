@@ -45,8 +45,10 @@ export default (schemaOrComponent: FormKitSchemaNode | FormKitSection | Componen
         definition.schema = FormItemSection(inputSection())
     } else if (typeof schemaOrComponent === 'function') {
         inputSection = schemaOrComponent
+        definition.library = { FormItem }
         definition.schema = FormItemSection(inputSection())
     } else {
+        definition.library = { FormItem }
         inputSection = createSection('input', () => schemaOrComponent)
     }
     definition.schema = FormItemSection(inputSection())
