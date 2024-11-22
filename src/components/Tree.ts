@@ -27,7 +27,7 @@ export default defineComponent({
                 ...props.context.attrs,
                 disabled: props.context.disabled,
                 showCheckbox: true
-            });
+            }, props.context.slots);
         }
     }
 });

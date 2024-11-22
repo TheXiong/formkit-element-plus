@@ -12,6 +12,7 @@
     "release": "npm version patch && npm run build && npm publish"
   },
   "dependencies": {
+    "@formkit/inputs": "^1.6.9",
     "vue": "^3.3.4"
   },
   "devDependencies": {

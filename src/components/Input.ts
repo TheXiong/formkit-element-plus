@@ -17,8 +17,6 @@ export default defineComponent({
             },
         });
 
-        console.log(props.context);
-        
         return () => {
             return h(
                 ElInput,
@@ -35,48 +33,7 @@ export default defineComponent({
                     disabled: props.context.disabled,
                     ...props.context.attrs,
                 },
-                {
-                    prefix: props.context.prefix ? () => {
-                        return h(
-                            "div",
-                            {
-                                className: props.context.classes.prefix,
-                            },
-                            [props.context.prefix]
-                        )
-
-                    } : null,
-                    suffix: props.context.suffix ? () => {
-                        return h(
-                            "div",
-                            {
-                                className: props.context.classes.suffix,
-                            },
-                            [props.context.suffix]
-                        )
-
-                    } : null,
-                    prepend: props.context.prepend ? () => {
-                        return h(
-                            "div",
-                            {
-                                className: props.context.classes.prepend,
-                            },
-                            [props.context.prepend]
-                        )
-
-                    } : null,
-                    append: props.context.append ? () => {
-                        return h(
-                            "div",
-                            {
-                                className: props.context.classes.append,
-                            },
-                            [props.context.append]
-                        )
-
-                    } : null,
-                }
+                props.context.slots
             );
         };
     },

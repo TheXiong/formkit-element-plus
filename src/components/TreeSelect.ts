@@ -27,7 +27,7 @@ export default defineComponent({
                 disabled: props.context.disabled,
                 ...props.context.attrs,
 
-            });
+            }, props.context.slots);
         }
     }
 });

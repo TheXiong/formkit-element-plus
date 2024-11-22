@@ -40,6 +40,7 @@ export { FormItem, Form, FormUpload, createFormItemInput }
 export const ElementPlusInputs: FormKitLibrary = {
     "elCheckboxGroup": createFormItemInput(CheckboxGroup, {
         props: ["options", "optionsDepIds", "optionsLoader"],
+        // @ts-ignore
         features: [options],
     }),
     "elTransfer": createFormItemInput(Transfer, {
@@ -67,10 +68,12 @@ export const ElementPlusInputs: FormKitLibrary = {
     "elRate": createFormItemInput(Rate),
     "elSelect": createFormItemInput(Select, {
         props: ["options", "optionsDepIds", "optionsLoader"],
+        // @ts-ignore
         features: [options],
     }),
     "elRadioGroup": createFormItemInput(RadioGroup, {
         props: ["options", "optionsDepIds", "optionsLoader", "isRadioButton"],
+        // @ts-ignore
         features: [options],
     }),
     "elTree": createFormItemInput(Tree),
@@ -91,6 +94,7 @@ export const ElementPlusInputs: FormKitLibrary = {
         }))("$slots.default", "$slots.footer"),
         type: "group",
         props: ["submitBehavior", "incompleteMessage"],
+        // @ts-ignore
         features: [forms, disablesChildren],
         library: {
             ElForm,

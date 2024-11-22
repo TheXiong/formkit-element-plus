@@ -30,8 +30,8 @@ export default defineComponent({
                         onBlur={() => {
                             props.context.handlers.blur()
                         }}
-                        disabled={props.context.disabled}
-                        v-bind={props.context.attrs} />
+                        disabled={!!props.context.disabled}
+                        {...props.context.attrs} />
                     {
                         props.context.tooltip ?
                             <div class="formkit-tooltip" style="display:flex;align-items:center">

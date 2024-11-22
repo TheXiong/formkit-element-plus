@@ -25,7 +25,12 @@ const submit = (a) => {
     <pre wrap>{{ data }}</pre>
 
     <FormKit ref="myForm" type="elForm" v-model="data" @submit="onClickSubmit" label-position="top">
-        <FormKit type="el-input" label="Name abcdef" name="name" validation="required" formItem />
+        <FormKit type="el-input" aa label="Name abcdef" name="name" validation="required" formItem >
+            <!-- sds -->
+             <template #prepend>
+                oooo
+             </template>
+        </FormKit>
         <FormKit type="el-input" label="Code" name="code" formItem />
         <FormKit type="el-textarea" label="Remark" name="remark" formItem />
 

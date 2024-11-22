@@ -49,6 +49,7 @@ let router = createRouter({
         { path: '/slots', component: () => import('./pages/slots.vue') },
         { path: '/tree', component: () => import('./pages/tree.vue') },
         { path: '/radio', component: () => import('./pages/radio.vue') },
+        { path: '/dialog', component: () => import('./pages/dialog.vue') },
     ],
 })
 
