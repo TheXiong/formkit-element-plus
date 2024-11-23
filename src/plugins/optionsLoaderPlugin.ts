@@ -25,7 +25,7 @@ export function createOptionsLoaderPlugin(
           const depNodes: Array<FormKitNode | undefined> = depIds.map(node.at)
           depNodes.forEach(dNode => {
             if (dNode) {
-              dNode.on('input', () => {
+              dNode.on('commit', () => {
                 loadOptions(
                   depNodes.reduce((prev, dNode) => {
                     if (dNode) prev[dNode.name] = dNode?.value;
