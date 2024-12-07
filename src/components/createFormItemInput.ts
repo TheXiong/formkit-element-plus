@@ -24,9 +24,11 @@ export default (schemaOrComponent: FormKitSchemaNode | FormKitSection | Componen
         schemaMemoKey: `${Math.random()}`
     }
 
-
-    const FormItemSection = createSection('FormItem', () => ({
+    const FormItemSection = createSection('outer', () => ({
         $cmp: 'FormItem',
+        meta: {
+            autoAnimate: true,
+        },
         props: {
             context: '$node.context',
         },
@@ -35,21 +37,22 @@ export default (schemaOrComponent: FormKitSchemaNode | FormKitSection | Componen
     let inputSection: FormKitSection
     if (isComponent(schemaOrComponent)) {
         const cmpName = `CustomSchemaComponent${totalCreated++}`
-        inputSection = createSection('input', () => ({
+        inputSection = createSection('inner', () => ({
             $cmp: cmpName,
+            meta: {
+                autoAnimate: true,
+            },
             props: {
                 context: '$node.context',
             },
         }))
         definition.library = { [cmpName]: markRaw(schemaOrComponent), FormItem }
-        definition.schema = FormItemSection(inputSection())
     } else if (typeof schemaOrComponent === 'function') {
         inputSection = schemaOrComponent
         definition.library = { FormItem }
-        definition.schema = FormItemSection(inputSection())
     } else {
+        inputSection = createSection('inner', () => schemaOrComponent)
         definition.library = { FormItem }
-        inputSection = createSection('input', () => schemaOrComponent)
     }
     definition.schema = FormItemSection(inputSection())
 

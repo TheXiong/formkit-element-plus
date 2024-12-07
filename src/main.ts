@@ -1,14 +1,17 @@
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+import { createRouter, createWebHistory } from 'vue-router'
 
+import ElementPlus from 'element-plus'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import 'element-plus/dist/index.css'
 
 import App from './App.vue'
 
 import { plugin, defaultConfig } from '@formkit/vue'
+import { ElementPlusInputs } from "./components";
+import { createAutoAnimatePlugin } from './plugins/autoAnimatePlugin'
+import { createOptionsLoaderPlugin } from "./plugins/optionsLoaderPlugin";
 import '@formkit/themes/genesis'
-
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const app = createApp(App);
 
@@ -17,18 +20,27 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 
-import { ElementPlusInputs } from "./components";
-import { createOptionsLoaderPlugin } from "./plugins/optionsLoaderPlugin";
 
 app.use(ElementPlus)
 app.use(plugin, defaultConfig({
-    plugins: [ createOptionsLoaderPlugin() ],
+    plugins: [createOptionsLoaderPlugin(),createAutoAnimatePlugin({
+        // optional config
+        duration: 250,
+        easing: 'ease-in-out',
+        // delay: 0,
+      },
+      {
+        // optional animation targets object
+        global: ['outer', 'inner'],
+        form: ['form', 'ElForm'],
+        repeater: ['items'],
+      })
+    ],
     inputs: {
         ...ElementPlusInputs
     }
 }))
 
-import { createRouter, createWebHistory } from 'vue-router'
 
 let router = createRouter({
     history: createWebHistory(),

@@ -12,13 +12,14 @@
     "release": "npm version patch && npm run build && npm publish"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@formkit/inputs": "^1.6.9",
     "vue": "^3.3.4"
   },
   "devDependencies": {
     "@element-plus/icons-vue": "^2.1.0",
-    "@formkit/themes": "^0.17.2",
-    "@formkit/vue": "^0.17.2",
+    "@formkit/themes": "^1.6.9",
+    "@formkit/vue": "^1.6.9",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
     "element-plus": "^2.3.5",

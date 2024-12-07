@@ -1,6 +1,4 @@
-import { FormKitPlugin, FormKitLibrary } from '@formkit/core';
-import { createInput } from '@formkit/vue'
-
+import { FormKitLibrary } from '@formkit/core';
 import Input from './Input'
 import Textarea from './Textarea'
 import Rate from './Rate'
@@ -33,7 +31,7 @@ import FormUpload from './FormUpload'
 import { forms, disablesChildren, createSection, options } from '@formkit/inputs';
 import { ElForm } from 'element-plus';
 
-export { createOptionsLoaderPlugin } from "../plugins"
+export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin } from "../plugins"
 
 export { FormItem, Form, FormUpload, createFormItemInput }
 
