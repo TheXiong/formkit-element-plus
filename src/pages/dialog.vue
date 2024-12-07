@@ -1,10 +1,10 @@
 <template>
     <el-dialog v-model="showDialog" title="title" width="40%" :before-close="handleClose">
         {{ data }}
-        <FormKit ref="formRef" type="elForm" label-position="top" submit-label="Register" v-model="data"
+        <!-- <FormKit ref="formRef" type="elForm" label-position="top" submit-label="Register" v-model="data"
             @submit="onSubmit">
             <FormKitSchema :schema="schema" />
-        </FormKit>
+        </FormKit> -->
         <template #footer>
             <el-button type="primary" @click="handleConfirm">确定</el-button>
         </template>

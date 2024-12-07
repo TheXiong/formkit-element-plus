@@ -266,17 +266,7 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
   integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
 
-"@formkit/addons@^1.6.9":
-  version "1.6.9"
-  resolved "https://registry.npmmirror.com/@formkit/addons/-/addons-1.6.9.tgz#370746501abbd2b632cc2f87ae793dfcd07b0293"
-  integrity sha512-Qfq789kpQ5EYqFl6QPE32vMCs0qivbvR50NNRwUadC2hgfGcayKe8Gc43G8neW6HHPjmyzkHQHLknLxHrGni3Q==
-  dependencies:
-    "@formkit/auto-animate" latest
-    "@formkit/core" "1.6.9"
-    "@formkit/inputs" "1.6.9"
-    "@formkit/utils" "1.6.9"
-
-"@formkit/auto-animate@^0.8.2", "@formkit/auto-animate@latest":
+"@formkit/auto-animate@^0.8.2":
   version "0.8.2"
   resolved "https://registry.npmmirror.com/@formkit/auto-animate/-/auto-animate-0.8.2.tgz#24a56e816159fd5585405dcee6bb992f81c27585"
   integrity sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==
@@ -284,6 +274,13 @@
 "@formkit/core@1.6.9":
   version "1.6.9"
   resolved "https://registry.yarnpkg.com/@formkit/core/-/core-1.6.9.tgz#36f0ee738483c109a3749de3fe17f46791fad93f"
+  integrity sha512-Zb5OkYKMf7Rp1pd4iUMv0TJQvfgl1PdKtRRQoGiTA0XIFLB/7tcRMr1wc5isA2JS+hllfxMTh3RWF8N+64fTMg==
+  dependencies:
+    "@formkit/utils" "1.6.9"
+
+"@formkit/core@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.npmmirror.com/@formkit/core/-/core-1.6.9.tgz#36f0ee738483c109a3749de3fe17f46791fad93f"
   integrity sha512-Zb5OkYKMf7Rp1pd4iUMv0TJQvfgl1PdKtRRQoGiTA0XIFLB/7tcRMr1wc5isA2JS+hllfxMTh3RWF8N+64fTMg==
   dependencies:
     "@formkit/utils" "1.6.9"

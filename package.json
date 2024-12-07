@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
+    "@formkit/core": "^1.6.9",
     "@formkit/inputs": "^1.6.9",
     "vue": "^3.3.4"
   },

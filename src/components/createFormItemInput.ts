@@ -17,9 +17,10 @@ function isComponent(obj: any): obj is Component {
 
 let totalCreated = 1
 export default (schemaOrComponent: FormKitSchemaNode | FormKitSection | Component, definitionOptions?: Partial<FormKitTypeDefinition>): FormKitTypeDefinition => {
+    const props = (definitionOptions?.props || []) as string[]
     const definition: FormKitTypeDefinition = {
         type: 'input',
-        props: ["labelWidth", "labelPosition", ...definitionOptions?.props ?? []],
+        props: ["labelWidth", "labelPosition", ...props],
         features: definitionOptions?.features ?? [],
         schemaMemoKey: `${Math.random()}`
     }
