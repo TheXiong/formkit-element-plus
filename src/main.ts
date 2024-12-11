@@ -8,9 +8,7 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 
 import { plugin, defaultConfig } from '@formkit/vue'
-import { ElementPlusInputs } from "./components";
-import { createAutoAnimatePlugin } from './plugins/autoAnimatePlugin'
-import { createOptionsLoaderPlugin } from "./plugins/optionsLoaderPlugin";
+import { ElementPlusInputs, createAutoAnimatePlugin, createOptionsLoaderPlugin } from "./components";
 import '@formkit/themes/genesis'
 
 const app = createApp(App);

@@ -31,7 +31,7 @@ import FormUpload from './FormUpload'
 import { forms, disablesChildren, createSection, options } from '@formkit/inputs';
 import { ElForm } from 'element-plus';
 
-export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin } from "../plugins"
+export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin } from "./plugins"
 
 export { FormItem, Form, FormUpload, createFormItemInput }
 

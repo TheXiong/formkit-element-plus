@@ -7,7 +7,7 @@
   "url": "https://thexiong.github.io/formkit-element-plus-docs/",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "release": "npm version patch && npm run build && npm publish"
   },
@@ -35,5 +35,6 @@
   ],
   "module": "./dist/formkit-element-plus.js",
   "main": "./dist/formkit-element-plus.js",
+  "types": "./dist/types/index.d.ts",
   "license": "MIT"
 }
