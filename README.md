@@ -27,10 +27,12 @@ direct setup in main.ts
 import { plugin, defaultConfig } from '@formkit/vue'
 import { ElementPlusInputs } from "formkit-element-plus";
 import { zh } from '@formkit/i18n'
-import '@formkit/themes/genesis'
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 
 const app = createApp(App);
 
+app.use(ElementPlus);
 app.use(plugin, defaultConfig({
     // set language
     locales: { zh },
