@@ -1,4 +1,4 @@
-import { FormKitLibrary } from '@formkit/core';
+import { FormKitGroupValue, FormKitLibrary } from '@formkit/core';
 import Input from './Input'
 import Textarea from './Textarea'
 import Rate from './Rate'
@@ -28,8 +28,8 @@ import FormItem from "./FormItem.vue"
 import Form from './Form.vue'
 import FormUpload from './FormUpload'
 
-import { forms, disablesChildren, createSection, options } from '@formkit/inputs';
-import { ElForm } from 'element-plus';
+import { forms, disablesChildren, createSection, options, FormKitInputs } from '@formkit/inputs';
+import { ElForm, UploadUserFile } from 'element-plus';
 
 export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin } from "./plugins"
 
@@ -97,5 +97,103 @@ export const ElementPlusInputs: FormKitLibrary = {
         library: {
             ElForm,
         },
+    }
+}
+
+declare module "@formkit/inputs" {
+    export interface FormKitInputProps<Props extends FormKitInputs<Props>> {
+        "elCheckboxGroup": {
+            type: "elCheckboxGroup";
+            value?: string[] | number[];
+        };
+        "elTransfer": {
+            type: "elTransfer";
+            value?: Array<string | number>;
+        };
+        "elDateRangePicker": {
+            type: "elDateRangePicker";
+            value?: number | string | Date | [Date, Date] | [string, string];
+        };
+        "elCascader": {
+            type: "elCascader";
+            value?: string | number | string[] | number[] | any;
+        };
+        "elInput": {
+            type: "elInput";
+            value?: string;
+        };
+        "elSwitch": {
+            type: "elSwitch";
+            value?: boolean | string | number;
+        };
+        "elTextarea": {
+            type: "elTextarea";
+            value?: string;
+        };
+        "elPassword": {
+            type: "elPassword";
+            value?: string;
+        };
+        "elDatePicker": {
+            type: "elDatePicker";
+            value?: number | string | Date | [Date, Date] | [string, string];
+        };
+        "elTimePicker": {
+            type: "elTimePicker";
+            value?: number | string | Date | [Date, Date] | [number, number] | [string, string];
+        };
+        "elColorPicker": {
+            type: "elColorPicker";
+            value?: string;
+        };
+        "elInputNumber": {
+            type: "elInputNumber";
+            value?: number;
+        };
+        "elCheckbox": {
+            type: "elCheckbox";
+            value?: 	
+            string | number | boolean;
+        };
+        "elSlider": {
+            type: "elSlider";
+            value?: number | number[];
+        };
+        "elTimeSelect": {
+            type: "elTimeSelect";
+            value?: string;
+        };
+        "elUpload": {
+            type: "elUpload";
+            value?: UploadUserFile[];
+        };
+        "elAutocomplete": {
+            type: "elAutocomplete";
+            value?: string;
+        };
+        "elRate": {
+            type: "elRate";
+            value?: number;
+        };
+        "elSelect": {
+            type: "elSelect";
+            value?: string | number | boolean | object | Array<any>;
+        };
+        "elRadioGroup": {
+            type: "elRadioGroup";
+            value?: string | number | boolean;
+        };
+        "elTree": {
+            type: "elTree";
+            value?: Array<string | number>;
+        };
+        "elTreeSelect": {
+            type: "elTreeSelect";
+            value?: any;
+        };
+        "elForm": {
+            type: "elForm";
+            value?: FormKitGroupValue
+        };
     }
 }
