@@ -84,14 +84,14 @@ function createValue(num: number, fn: FnType) {
 
 function repeaterFeature(node: FormKitNode) {
   node.props.removeControl = node.props.removeControl ?? true;
-  node.props.upControl = node.props.upControl ?? true;
-  node.props.downControl = node.props.downControl ?? true;
-  node.props.insertControl = node.props.insertControl ?? true;
+  node.props.upControl = node.props.upControl ?? false;
+  node.props.downControl = node.props.downControl ?? false;
+  node.props.insertControl = node.props.insertControl ?? false;
   node.props.addButton = node.props.addButton ?? true;
-  node.props.addLabel = node.props.addLabel ?? false;
+  node.props.addLabel = node.props.addLabel ?? 'add';
   node.props.addAttrs = node.props.addAttrs ?? {};
-
-  
+  node.props.controlAttrs = node.props.controlAttrs ?? {};
+  node.props.actionWidth = node.props.actionWidth ?? 0;
 
   if (node.props.min > node.props.max) {
     throw Error("Repeater: min must be less than max");
@@ -103,9 +103,11 @@ function repeaterFeature(node: FormKitNode) {
 
   if (node.context) {
     node.context.actionCount = (+node.props.removeControl) + (+node.props.upControl) + (+node.props.downControl) + (+node.props.insertControl)
-    node.context.actionWidth = (node.context.actionCount as number) * 46 + (node.context.actionCount as number - 1) * 8
-    console.log(node.context.actionCount, 'node.context.actionCount');
-    
+    if(!node.props.actionWidth) {
+      node.context.actionWidth = (node.context.actionCount as number) * 46 + (node.context.actionCount as number - 1) * 8 + 'px'
+    } else {
+      node.context.actionWidth = node.props.actionWidth
+    }
 
     const fns = node.context.fns;
     fns.createShift = (index: number, offset: number) => () => {

@@ -17,6 +17,10 @@ const props = defineProps({
     type: Function as PropType<() => void>,
     required: true,
   },
+  bind: {
+    type: Object,
+    required: true,
+  },
 });
 
 const handleAppendClick = () => {
@@ -28,7 +32,7 @@ const handleAppendClick = () => {
 
 <template>
   <div :class="context.classes.add" style="display: flex;justify-content: flex-start;padding: 12px 0;">
-    <ElButton :disabled="disabled" @click="handleAppendClick">
+    <ElButton :disabled="disabled" v-bind="props.bind" @click="handleAppendClick">
       <!-- <template #icon>
         <CirclePlusFilled class="h-full w-full" />
       </template> -->

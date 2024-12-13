@@ -9,8 +9,8 @@ export const addButton = repeaterSection("addButton", () => ({
     onClick: "$fns.createAppend()",
     disabled: "$value.length >= $max",
     context: "$node.context",
+    bind: "$addAttrs",
   },
-  bind: "$addAttrs",
   if: "$addButton",
   type: "button",
 }));
@@ -91,6 +91,7 @@ export const removeControl = repeaterSection("removeControl", () => ({
     icon: DeleteFilled,
     class: `$classes.control`,
   },
+  bind: "$controlAttrs",
   if: "$removeControl",
 }));
 
@@ -240,8 +241,8 @@ export const theadCol = repeaterSection('theadCol', () => {
       key: '$column',
       class: 'is-leaf el-table__cell',
       style: {
-        if: "$column.width",
-        then: "$: 'width: ' + ($column.width)"
+        if: "$column.columnWidth",
+        then: "$: 'width: ' + ($column.columnWidth)"
       }
     },
     children: [
@@ -261,7 +262,7 @@ export const theadActionCol = repeaterSection('theadActionCol', () => {
     $el: 'th',
     attrs: {
       class: 'is-leaf el-table__cell',
-      style: '$: "width:" + ($actionWidth) + "px"'
+      style: '$: "width:" + $actionWidth'
     },
     children: '',
   };
@@ -274,7 +275,7 @@ export const tbodyRow = repeaterSection('tbodyRow', () => {
     attrs: {
       key: '$item',
       class: "formkit-item",
-      style: 'height: 67px'
+      // style: 'height: 67px'
     },
   };
 });
@@ -300,15 +301,16 @@ export const tbodyCol = repeaterSection('tbodyCol', () => {
         }
       ],
       attrs: {
-        class: 'cell'
+        class: 'cell',
+        style: 'padding-bottom: 18px'
       }
     }],
     attrs: {
       key: '$column',
       class: 'el-table__cell',
       style: {
-        if: "$column.width",
-        then: "$: 'width: ' + ($column.width)"
+        if: "$column.columnWidth",
+        then: "$: 'width: ' + ($column.columnWidth)"
       }
     },
   };
@@ -319,7 +321,7 @@ export const tbodyActionCol = repeaterSection('tbodyActionCol', () => {
     $el: 'td',
     attrs: {
       class: 'el-table__cell',
-      style: '$: "width:" + ($actionWidth) + "px"'
+      style: '$: "width:" + $actionWidth'
     },
   };
 });
@@ -328,7 +330,7 @@ export const actionButtonGroup = repeaterSection('actionButtonGroup', () => {
   return {
     $el: 'div',
     attrs: {
-      style: 'margin-bottom: 18px'
+      style: 'padding-bottom: 18px'
     },
   };
 });

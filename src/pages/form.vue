@@ -1,4 +1,5 @@
 <script setup>
+import { Check } from "@element-plus/icons-vue";
 import { onMounted, ref } from "vue";
 let data = ref({
     name: "hello",
@@ -29,48 +30,57 @@ const schema = [
         id: 'dfd'
     },
     {
-        $formkit: 'el-array-table',
-        name: 'dataMapping',
-        label: `hhsdf`,
+        $formkit: "el-array-table",
+        name: "filters",
+        label: `关联筛选器`,
         dynamic: true,
-        upControl: true,
-        downControl: true,
-        insertControl: true,
+        upControl: false,
+        downControl: false,
+        insertControl: false,
         removeControl: true,
-        validation: "required",
-        min: 0,
-        max: 4,
-        // valueType: 'KV',
-        help: 'All input fields support templatization. Use $[messageKey] to extract value from the message and ${metadataKey} to extract value from the metadata.',
+        addLabel: "添加筛选器",
+        actionWidth: '200px',
+        controlAttrs: {
+            type: "primary",
+            icon: Check
+        },
         value: [
             {
-                sourceKey: 'alarmThreshold',
-                targetKey: 'threshold'
+                negate: true,
+                relationType: 'aaa',
+                entityTypes: 'DEVICE'
             }
         ],
-        addLabel: 'Add mapping',
         columns: [
-            {
-                $formkit: 'el-input',
-                name: 'not',
-                label: `nnnn`,
-                validation: "required",
-                width: '80px'
-            },
-            {
-                $formkit: 'el-input',
-                name: 'sourceKey',
-                label: `Source key`,
-                validation: "required",
-            },
-            {
-                $formkit: 'el-input',
-                name: 'targetKey',
-                label: 'Target key',
-                validation: "required",
-            },
-        ]
-    },
+          {
+            $formkit: "el-switch",
+            name: "negate",
+            label: `Not`,
+            inlinePrompt: true,
+            value: true,
+            children: ["Not"],
+          },
+          {
+            $formkit: "el-select",
+            name: "relationType",
+            label: `关联类型`,
+          },
+          {
+            $formkit: "el-select",
+            name: "entityTypes",
+            label: "实体类型",
+            value: "",
+            options: [
+              { label: "设备", value: 'DEVICE' },
+              { label: "资产", value: 'ASSET' },
+              { label: "实体视图", value: 'ENTITY_VIEW' },
+              { label: "租户", value: 'TENANT' },
+              { label: "客户", value: 'CUSTOMER' },
+              { label: "用户", value: 'USER' },
+            ],
+          },
+        ],
+      }
 ]
 </script>
 <template>

@@ -106,11 +106,14 @@ export const repeater: FormKitTypeDefinition = {
         "downControl",
         "removeControl",
         "insertControl",
+        "controlAttrs",
         "addLabel",
+        "addAttrs",
         "addButton",
         "columns",
         "valueType",
-        "help"
+        "help",
+        "actionWidth"
     ],
     /**
      * Additional features that make this input work.

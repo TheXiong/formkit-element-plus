@@ -27,6 +27,8 @@ export default defineComponent({
                     props.context.handlers.blur()
                 },
                 disabled: props.context.disabled,
+                activeIcon: props.context.activeIcon,
+                inactiveIcon: props.context.inactiveIcon,
                 ...props.context.attrs
             }, props.context.slots);
         }
