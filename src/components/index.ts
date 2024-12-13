@@ -27,6 +27,7 @@ import createFormItemInput from './createFormItemInput';
 import FormItem from "./FormItem.vue"
 import Form from './Form.vue'
 import FormUpload from './FormUpload'
+import { repeater } from './repeater/index';
 
 import { forms, disablesChildren, createSection, options, FormKitInputs } from '@formkit/inputs';
 import { ElForm, UploadUserFile } from 'element-plus';
@@ -97,7 +98,8 @@ export const ElementPlusInputs: FormKitLibrary = {
         library: {
             ElForm,
         },
-    }
+    },
+    "elArrayTable": repeater
 }
 
 declare module "@formkit/inputs" {
