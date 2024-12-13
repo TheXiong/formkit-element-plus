@@ -8,7 +8,7 @@ export const repeats = function (node: FormKitNode) {
 
   node.props.min = node.props.min ? Number(node.props.min) : 0;
   node.props.max = node.props.max ? Number(node.props.max) : 1 / 0;
-  let timer: NodeJS.Timeout
+  let timer: any
 
   // node.hook.input((payload, next) => {
   //   if (node.props.valueType === 'KV' && !Array.isArray(payload)) {
