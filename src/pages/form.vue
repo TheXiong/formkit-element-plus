@@ -1,5 +1,5 @@
 <script setup>
-import { Check } from "@element-plus/icons-vue";
+import { Check, Close } from "@element-plus/icons-vue";
 import { onMounted, ref } from "vue";
 let data = ref({
     name: "hello",
@@ -57,8 +57,11 @@ const schema = [
             name: "negate",
             label: `Not`,
             inlinePrompt: true,
+            activeIcon: Check,
+            inactiveIcon: Close,
             value: true,
             children: ["Not"],
+            columnWidth: '100px'
           },
           {
             $formkit: "el-select",
