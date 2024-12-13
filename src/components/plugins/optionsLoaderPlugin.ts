@@ -17,8 +17,17 @@ export function createOptionsLoaderPlugin(
         const loader = node.context?.optionsLoader as Function;
 
         const loadOptions = async (param: Record<string, any>) => {
-          const options = await loader(param)
-          node.context!.options = options
+          try {
+            const options = await loader(param)
+            if (node.context) {
+              node.context!.options = options
+            }
+          } catch (error) {
+            if (node.context) {
+              node.context!.options = []
+            }
+          }
+
         }
 
         nextTick(() => {
