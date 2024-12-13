@@ -330,7 +330,7 @@ export const actionButtonGroup = repeaterSection('actionButtonGroup', () => {
   return {
     $el: 'div',
     attrs: {
-      style: 'padding-bottom: 18px'
+      style: 'padding-bottom: 18px;display:flex;justify-content:center;'
     },
   };
 });
