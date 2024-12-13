@@ -197,5 +197,9 @@ declare module "@formkit/inputs" {
             type: "elForm";
             value?: FormKitGroupValue
         };
+        "elArrayTable": {
+            type: "elArrayTable";
+            value?: any[];
+        }
     }
 }
