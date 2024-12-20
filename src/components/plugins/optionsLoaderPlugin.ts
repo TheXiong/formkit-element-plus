@@ -18,9 +18,11 @@ export function createOptionsLoaderPlugin(
 
         const loadOptions = async (param: Record<string, any>) => {
           try {
-            const options = await loader(param)
             if (node.context) {
-              node.context!.options = options
+              node.context.attrs.loading = true
+              const options = await loader(param)
+              node.context.attrs.loading = false
+              node.context.options = options
             }
           } catch (error) {
             if (node.context) {
