@@ -11,6 +11,21 @@ setTimeout(() => {
     ]
 }, 1000)
 
+const schema = [{
+    name: 'upload1',
+    label: 'elUpload1',
+    $formkit: 'elUpload',
+    action: '/api/upload',
+    children: [{
+        $cmp: 'elButton',
+        props: {
+            type: 'primary',
+            size: 'small'
+        },
+        children: 'select file'
+    }]
+}]
+
 const beforeUpload = (file) => {
     console.log('beforeUpload', file)
     return true
@@ -24,5 +39,7 @@ const beforeUpload = (file) => {
             :before-upload="beforeUpload">
             <el-button type="primary" size="small">select file</el-button>
         </FormKit>
+
+        <FormKitSchema :schema="schema" />
     </FormKit>
 </template>

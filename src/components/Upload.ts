@@ -5,14 +5,6 @@ export default defineComponent({
     setup(props, { slots }) {
         props.context.classes.inner = "";
 
-        let children: any[] = [];
-        if (slots.default) {
-            children = slots.default();
-
-        } else {
-            children = props.context.slots?.default?.() ?? [];
-        }
-
         const value = computed({
             get() {
                 return props.context.value;
@@ -23,6 +15,14 @@ export default defineComponent({
         });
 
         return () => {
+            let children: any[] = [];
+            if (slots.default) {
+                children = slots.default();
+
+            } else {
+                children = props.context.slots?.default?.() ?? [];
+            }
+
             return h(ElUpload, {
                 autoUpload: false,
                 "file-list": value.value,
