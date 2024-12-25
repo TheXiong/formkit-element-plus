@@ -16,7 +16,7 @@ export default defineComponent({
         return () => {
             return h(ElUpload, {
                 autoUpload: false,
-                "modelValue:fileList": props.context.node.value,
+                "file-list": props.context.node.value,
                 "onUpdate:fileList": (val: any) => {
                     props.context.node.input(val);
                 },
