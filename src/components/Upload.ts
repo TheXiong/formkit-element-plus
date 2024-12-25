@@ -1,4 +1,4 @@
-import { defineComponent, h } from 'vue'
+import { computed, defineComponent, h } from 'vue'
 import { ElUpload } from 'element-plus';
 export default defineComponent({
     props: ["context"],
@@ -13,12 +13,21 @@ export default defineComponent({
             children = props.context.slots?.default?.() ?? [];
         }
 
+        const value = computed({
+            get() {
+                return props.context.value;
+            },
+            set(val) {
+                props.context.node.input(val);
+            }
+        });
+
         return () => {
             return h(ElUpload, {
                 autoUpload: false,
-                "file-list": props.context.node.value,
+                "file-list": value.value,
                 "onUpdate:fileList": (val: any) => {
-                    props.context.node.input(val);
+                    value.value = val;
                 },
                 disabled: props.context.disabled,
                 ...props.context.attrs
