@@ -62,7 +62,7 @@ export const ElementPlusInputs: FormKitLibrary = {
     }),
     "elSlider": createFormItemInput(Slider),
     "elTimeSelect": createFormItemInput(TimeSelect),
-    "elUpload": createFormItemInput(Upload),
+    "elUpload": createFormItemInput(Upload, {props: ["valueGetter", "valueSetter", "valueType"]}),
     "elAutocomplete": createFormItemInput(Autocomplete),
     "elRate": createFormItemInput(Rate),
     "elSelect": createFormItemInput(Select, {
