@@ -3,8 +3,29 @@ import { ref } from "vue";
 const data = ref({})
 
 setTimeout(() => {
-    // data.value.upload1 = 'http://172.16.5.247:9000/dms/20241225/d200adad6b634a1c96ef80101ef49b1e.png'
+    data.value.upload1 = 'http://172.16.5.247:9000/dms/20241225/d200adad6b634a1c96ef80101ef49b1e.png'
 }, 1000)
+
+
+const request = (options) => {
+    console.log(options, 'options')
+    const { file, onSuccess, onError } = options;
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                code: 200,
+                data: {
+                    path: `http://127.0.0.1/${options.file.name}`
+                }
+            })
+        }, 2000)
+    })
+}
+
+const beforeUpload = (file) => {
+    console.log('beforeUpload', file)
+    return true
+}
 
 const schema = [{
     name: 'upload1',
@@ -14,6 +35,7 @@ const schema = [{
     valueType: "url",
     autoUpload: true,
     // multiple: true,
+    'list-type':"picture-card",
     limit: 1,
     children: [{
         $cmp: 'elButton',
@@ -22,13 +44,12 @@ const schema = [{
             size: 'small'
         },
         children: 'select file'
-    }]
+    }],
+    'http-request': request,
 }]
 
-const beforeUpload = (file) => {
-    console.log('beforeUpload', file)
-    return true
-}
+
+
 </script>
 
 <template>

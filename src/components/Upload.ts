@@ -1,4 +1,4 @@
-import { computed, defineComponent, h, nextTick, toRaw, unref } from 'vue'
+import { computed, defineComponent, h, nextTick, ref, toRaw, unref } from 'vue'
 import { ElUpload, UploadUserFile } from 'element-plus';
 
 
@@ -7,6 +7,7 @@ export default defineComponent({
     setup(props, { slots }) {
         props.context.classes.inner = "";
 
+        let fileList: UploadUserFile[] = [];
         const valueToHandler = {
             'file': {
                 get: (value: UploadUserFile | UploadUserFile[]) => {
@@ -26,27 +27,42 @@ export default defineComponent({
                 get: (value: string | string[]) => {
                     if (!value) return [];
                     if (typeof value === 'string') {
+                        const target = fileList.find(v => v.name === value);
+                        if (target) {
+                            return [target]
+                        }
                         return [{ url: value, name: value.split('/').pop() }];
                     } else {
-                        return value.map(v => ({ url: v, name: v.split('/').pop() }));
+                        return value.map(v => {
+                            const target = fileList.find(v1 => v1.name === v);
+                            if (target) {
+                                return target
+                            }
+                            return ({ url: v, name: v.split('/').pop() })
+                        });
                     }
                 },
                 set: (value: UploadUserFile[]) => {
+                    fileList = value;
+
                     const batch = (!props.context.attrs.limit) || props.context.attrs.limit > 1;
                     if (value.length === 0) {
                         return batch ? [] : '';
                     }
 
-                    const getPath = (response: any) => {
-                        if(!response) return '';
-                        if (response.data) {
-                            return response.data.url || response.data.src || response.data.path;
+                    const getPath = (file: any) => {
+                        if (!file.response) return file.name;
+
+                        let path = ''
+                        if (file.response.data) {
+                            path = file.response.data.url || file.response.data.src || file.response.data.path;
                         } else {
-                            return response.url || response.src || response.path;
+                            path = file.response.url || file.response.src || file.response.path;
                         }
+                        return path;
                     }
 
-                    return batch ? value.map(v => v.url || getPath(v.response)) : (value[0].url || getPath(value[0].response));
+                    return batch ? value.map(v => v.url || getPath(v)) : (value[0].url || getPath(value[0]));
                 }
             }
         }
@@ -81,6 +97,8 @@ export default defineComponent({
                 if (cacheValue !== JSON.stringify(rt)) {
                     cacheValue = JSON.stringify(rt);
                     nextTick(() => {
+                        console.log('set', rt);
+
                         props.context.node.input(rt);
                     });
                 }
@@ -99,7 +117,12 @@ export default defineComponent({
             return h(ElUpload, {
                 "file-list": value.value,
                 "onUpdate:fileList": (val: UploadUserFile[]) => {
+                    console.log('onUpdate:fileList', val);
                     value.value = val;
+                },
+                "onSuccess": (response: any, file: any, fileList: any) => {
+                    console.log('onSuccess', response, file, fileList);
+                    value.value = fileList;
                 },
                 disabled: props.context.disabled,
                 ...props.context.attrs
