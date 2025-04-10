@@ -34,6 +34,9 @@ import { ElForm, UploadUserFile } from 'element-plus';
 
 export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin } from "./plugins"
 
+export * from './FormKitSchema'
+export * from './FormKit'
+
 export { FormItem, Form, FormUpload, createFormItemInput }
 
 export const ElementPlusInputs: FormKitLibrary = {

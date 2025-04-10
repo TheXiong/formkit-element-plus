@@ -27,12 +27,22 @@ const columns = [
         $formkit: "el-switch",
         name: "negate",
         label: `Not`,
-        inlinePrompt: true,
-        activeIcon: Check,
-        inactiveIcon: Close,
+        // inlinePrompt: true,
+        // activeIcon: Check,
+        // inactiveIcon: Close,
         value: true,
         children: ["Not"],
-        columnWidth: '100px'
+        columnWidth: '100px',
+        slots: {
+            'active-action': {
+                $el: 'span',
+                children: 'T'
+            },
+            'inactive-action': {
+                $el: 'span',
+                children: 'F'
+            }
+        }
     },
     {
         $formkit: "el-select",

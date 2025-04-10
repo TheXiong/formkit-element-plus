@@ -26,3 +26,9 @@ props.context.node.on("message-removed", showErrorMessage)
         <div v-if="props.context.help" :class="props.context.classes.help">{{ props.context.help }}</div>
     </el-form-item>
 </template>
+
+<style scoped>
+.el-form-item {
+    width: 100%;
+}
+</style>

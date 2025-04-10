@@ -1,7 +1,9 @@
 import type { FormKitNode } from "@formkit/core";
 import { undefine } from "@formkit/utils";
-import { toRaw } from "vue";
-
+import { computed, onMounted } from "vue";
+import { Bottom, CirclePlusFilled, DeleteFilled, Top } from "@element-plus/icons-vue";
+import Sortable from "sortablejs";
+import { TableV2FixedDir } from "element-plus";
 
 export const repeats = function (node: FormKitNode) {
   node._c.sync = true;
@@ -47,7 +49,7 @@ export const repeats = function (node: FormKitNode) {
   //       });
   //       payload[address[0]] = data
   //     }
-      
+
   //   }
 
   //   return next(payload)
@@ -103,11 +105,12 @@ function repeaterFeature(node: FormKitNode) {
 
   if (node.context) {
     node.context.actionCount = (+node.props.removeControl) + (+node.props.upControl) + (+node.props.downControl) + (+node.props.insertControl)
-    if(!node.props.actionWidth) {
+    if (!node.props.actionWidth) {
       node.context.actionWidth = (node.context.actionCount as number) * 46 + (node.context.actionCount as number - 1) * 8 + 'px'
     } else {
       node.context.actionWidth = node.props.actionWidth
     }
+
 
     const fns = node.context.fns;
     fns.createShift = (index: number, offset: number) => () => {
@@ -128,9 +131,22 @@ function repeaterFeature(node: FormKitNode) {
       value.splice(index, 1), node.input(value, false);
     };
 
+    node.context.tableData = computed(() => {
+      if (node.context?.value && Array.isArray(node.context?.value)) {
+        node.context.value.forEach((item: any, index: number) => {
+          if (!item._id) {
+            item._id = new Date().getTime()
+          }
+        })
+      }
+
+      return (node.context?.value || [])
+    })
+
+
     if (node.context.columns && Array.isArray(node.context.columns)) {
       node.context.columns.forEach((column: any) => {
-        if(!column._label) {
+        if (!column._label) {
           column._label = column.label
           column.label = ''
         }
@@ -141,6 +157,148 @@ function repeaterFeature(node: FormKitNode) {
         if (!column.placeholder) {
           const isRequired = (column.validation || '').split('|').includes('required')
           column.placeholder = column._label + (isRequired ? '*' : '')
+        }
+      })
+
+      const tableColumns: any[] = node.context.columns.map((column: any, columnIndex: number) => {
+        return {
+          columnSchema: column,
+          key: `${column.name}-${columnIndex}`,
+          dataKey: column.name,
+          title: column._label,
+          ...column.columnWidth? {
+            width: column.columnWidth
+          }: {
+            width: 100,
+            flexGrow: 1
+          }
+        }
+      })
+
+      tableColumns.unshift({
+        key: 'index',
+        dataKey: 'index',
+        title: '序号',
+        width: 100,
+        flexGrow: 0,
+        columnSchema: {
+          $el: 'span',
+          children: '$index + 1'
+        }
+      })
+
+      tableColumns.unshift({
+        key: 'drag',
+        dataKey: 'drag',
+        title: '排序',
+        width: 100,
+        flexGrow: 0,
+        columnSchema: {
+          $el: 'div',
+          attrs: {
+            class: 'handle',
+            style: 'width: 24px;height: 24px;display: flex;align-items: center;justify-content: center;'
+          },
+          children: [
+            {
+              $cmp: 'Menu',
+              props: {
+                size: 20,
+                style: 'cursor: move;'
+              },
+
+            }
+          ]
+        },
+      })
+
+      onMounted(() => {
+        const el = document.querySelector('.drag-table .el-table-v2__body>div>div')
+        if (el) {
+          new Sortable(el, {
+            handle: '.handle', // handle's class
+            animation: 150,
+            onEnd: ({ newIndex, oldIndex }) => {
+              console.log(newIndex, oldIndex);
+              if (newIndex !== oldIndex) {
+                const value = node._value as unknown[];
+                value.splice(newIndex, 0, value.splice(oldIndex, 1)[0]),
+                  node.input(value, false);
+              }
+            }
+          });
+        }
+      })
+
+      if ((node.context as any).actionCount > 0) {
+        tableColumns.push({
+          key: 'action',
+          dataKey: 'action',
+          title: '操作',
+          width: (node.context as any).actionCount * 46 + ((node.context as any).actionCount - 1) * 12 + 16,
+          flexGrow: 0,
+          // fixed: TableV2FixedDir.RIGHT,
+          columnSchema: {
+            $el: 'div',
+            attrs: {
+              style: 'display:flex;justify-content:center;'
+            },
+            children: [
+              {
+                $cmp: "ElButton",
+                props: {
+                  disabled: "$index <= 0",
+                  icon: Top,
+                  onClick: "$createShift($index, -1)",
+                  class: `$classes.control`,
+                },
+                if: "$upControl",
+              },
+              {
+                $cmp: "ElButton",
+                props: {
+                  disabled: "$tableData.length <= $min",
+                  onClick: "$createRemover($index)",
+                  icon: DeleteFilled,
+                  class: `$classes.control`,
+                },
+                bind: "$controlAttrs",
+                if: "$removeControl",
+              },
+              {
+                $cmp: "ElButton",
+                props: {
+                  disabled: "$tableData.length >= $max",
+                  onClick: "$createInsert($index)",
+                  icon: CirclePlusFilled,
+                  class: `$classes.control`,
+                },
+                if: "$insertControl",
+              },
+              {
+                $cmp: "ElButton",
+                props: {
+                  disabled: "$index >= $tableData.length - 1",
+                  onClick: "$createShift($index, 1)",
+                  icon: Bottom,
+                  class: `$classes.control`,
+                },
+                if: "$downControl",
+              }
+            ],
+          }
+        })
+      }
+
+      node.context.tableColumns = tableColumns
+      node.context.tableHeight = computed(() => {
+        if (node.context?.value.length < 10) {
+          if (node.context?.value.length === 0) {
+            return '250px'
+          }
+          return ((node.context?.value.length || 0) + 1) * 50 + 'px'
+        } else {
+          return '550px'
         }
       })
     }

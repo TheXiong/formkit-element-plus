@@ -8,7 +8,7 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 
 import { plugin, defaultConfig } from '@formkit/vue'
-import { ElementPlusInputs, createAutoAnimatePlugin, createOptionsLoaderPlugin } from "./components";
+import { ElementPlusInputs, createAutoAnimatePlugin, createOptionsLoaderPlugin, FormKitSchema, formkitComponent as FormKit } from "./components";
 import '@formkit/themes/genesis'
 
 const app = createApp(App);
@@ -21,24 +21,30 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 app.use(ElementPlus)
 app.use(plugin, defaultConfig({
-    plugins: [createOptionsLoaderPlugin(),createAutoAnimatePlugin({
+    plugins: [createOptionsLoaderPlugin(), createAutoAnimatePlugin({
         // optional config
         duration: 250,
         easing: 'ease-in-out',
         // delay: 0,
-      },
-      {
-        // optional animation targets object
-        global: ['outer', 'inner'],
-        form: ['form', 'ElForm'],
-        repeater: ['items'],
-      })
+    },
+        {
+            // optional animation targets object
+            global: ['outer', 'inner'],
+            form: ['form', 'ElForm'],
+            repeater: ['items'],
+        })
     ],
     inputs: {
         ...ElementPlusInputs
     }
 }))
 
+app.use({
+    install(app) {
+        app._context.components['FormKitSchema'] = FormKitSchema
+        app._context.components['FormKit'] = FormKit
+    }
+})
 
 let router = createRouter({
     history: createWebHistory(),
@@ -60,6 +66,7 @@ let router = createRouter({
         { path: '/tree', component: () => import('./pages/tree.vue') },
         { path: '/radio', component: () => import('./pages/radio.vue') },
         { path: '/dialog', component: () => import('./pages/dialog.vue') },
+        { path: '/repeater', component: () => import('./pages/repeater.vue') },
     ],
 })
 

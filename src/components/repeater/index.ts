@@ -1,52 +1,19 @@
 import type { FormKitTypeDefinition } from "@formkit/core";
 
 import {
-    outer,
-    fieldset,
-    legend,
-    help,
-    inner,
-    prefix,
-    $if,
-    suffix,
-    messages,
-    message,
-    textInput,
     createSection,
 } from "@formkit/inputs";
 import { repeats } from "./features/repeats";
 import {
-    actionButtonGroup,
     addButton,
-    bodyTable,
     Card,
-    CardHeader,
-    ColSpace,
-    downControl,
-    empty,
-    group,
-    headerTable,
-    insertControl,
-    removeControl,
-    RowSpace,
-    tableBodyWrapper,
-    tableHeaderWrapper,
-    tableInnerWrapper,
-    tableWrapper,
-    tbodyActionCol,
-    tbodyCol,
-    tbodyRow,
-    thead,
-    theadActionCol,
-    theadCol,
-    theadRow,
-    upControl,
+    tableRepeater,
 } from "./sections";
-import { CirclePlusFilled, DeleteFilled, Top, Bottom } from "@element-plus/icons-vue";
+import { Menu } from "@element-plus/icons-vue";
 import AddButton from "./AddButton.vue";
-import { ElButton, ElCard, ElCol, ElRow, ElSpace, ElTable, ElTableColumn } from "element-plus";
+import { ElButton, ElCard, ElCol, ElRow, ElSpace, ElTable, ElTableColumn, ElTableV2, ElAutoResizer, ElEmpty } from "element-plus";
 import { FormItem } from "..";
-
+import TableRow from "./tableRow.vue";
 const FormItemSection = createSection('outer', () => ({
     $cmp: 'FormItem',
     meta: {
@@ -63,33 +30,7 @@ const FormItemSection = createSection('outer', () => ({
 export const repeater: FormKitTypeDefinition = {
     schema: FormItemSection(Card(
         // CardHeader(),
-        $if(
-            "$value.length === 0",
-            $if("$slots.empty", empty()),
-            tableWrapper(
-                tableInnerWrapper(
-                    tableHeaderWrapper(headerTable(thead(theadRow(theadCol(), $if("$actionCount > 0", theadActionCol()))))),
-                    tableBodyWrapper(bodyTable(
-                        tbodyRow(
-                            group(tbodyCol()),
-                            $if(
-                                "$actionCount > 0",
-                                tbodyActionCol(
-                                    actionButtonGroup(
-                                        RowSpace(
-                                            upControl(),
-                                            removeControl(),
-                                            insertControl(),
-                                            downControl()
-                                        ))
-
-                                ))
-                        )
-                    ))
-                )
-            ),
-
-        ),
+        tableRepeater(),
         addButton(`$addLabel`),
     )),
     /**
@@ -128,6 +69,11 @@ export const repeater: FormKitTypeDefinition = {
         ElSpace,
         ElTable,
         ElTableColumn,
-        FormItem
+        FormItem,
+        ElTableV2,
+        TableRow,
+        ElAutoResizer,
+        Menu,
+        ElEmpty
     },
 };
