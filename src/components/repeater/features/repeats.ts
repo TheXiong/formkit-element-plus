@@ -3,7 +3,6 @@ import { undefine } from "@formkit/utils";
 import { computed, onMounted } from "vue";
 import { Bottom, CirclePlusFilled, DeleteFilled, Top } from "@element-plus/icons-vue";
 import Sortable from "sortablejs";
-import { TableV2FixedDir } from "element-plus";
 
 export const repeats = function (node: FormKitNode) {
   node._c.sync = true;
