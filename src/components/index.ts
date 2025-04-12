@@ -29,6 +29,7 @@ import Form from './Form.vue'
 import FormUpload from './FormUpload'
 import { repeater } from './repeater/index';
 import { ArrayCards } from './ArrayCards/index';
+import { ArrayCollapse } from './ArrayCollapse/index'
 import { forms, disablesChildren, createSection, options, FormKitInputs } from '@formkit/inputs';
 import { ElForm, UploadUserFile } from 'element-plus';
 
@@ -103,7 +104,8 @@ export const ElementPlusInputs: FormKitLibrary = {
         },
     },
     "elArrayTable": repeater,
-    "elArrayCards": ArrayCards
+    "elArrayCards": ArrayCards,
+    "elArrayCollapse": ArrayCollapse
 }
 
 declare module "@formkit/inputs" {
@@ -207,6 +209,10 @@ declare module "@formkit/inputs" {
         },
         "elArrayCards": {
             type: "elArrayCards";
+            value?: any[];
+        },
+        "elArrayCollapse": {
+            type: "elArrayCollapse";
             value?: any[];
         }
     }
