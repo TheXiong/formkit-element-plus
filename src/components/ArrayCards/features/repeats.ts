@@ -8,50 +8,6 @@ export const repeats = function (node: FormKitNode) {
   node.props.max = node.props.max ? Number(node.props.max) : 1 / 0;
   let timer: any
 
-  // node.hook.input((payload, next) => {
-  //   if (node.props.valueType === 'KV' && !Array.isArray(payload)) {
-  //     const columns = (node.context?.columns as any[]) || []
-  //     if (columns.length !== 2 || !Object.keys(payload).length) {
-  //       return next([])
-  //     }
-
-  //     const [keyName, valueName] = columns.map(c => c.name)
-
-  //     const data = []
-  //     // 将对象转换成数组
-  //     for (const key in payload) {
-  //       data.push({
-  //         [keyName]: key,
-  //         [valueName]: payload[key]
-  //       })
-  //     }
-  //     return next(data)
-  //   }
-  //   return next(payload)
-  // })
-
-  // node.root.hook.submit((payload, next) => {
-  //   const address = node.address.slice(1)
-  //   console.log(address, payload, 'payload');
-  //   if (node.props.valueType === 'KV') {
-  //     if (address.length == 1) {
-  //       let data: Record<string, string> = {}
-  //       const columns = (node.context?.columns as any[]) || []
-  //       const [keyName, valueName] = columns.map(c => c.name)
-  //       payload[address[0]].forEach((ele: Record<string, string>) => {
-  //         if (ele[keyName] && ele[valueName]) {
-  //           data[ele[keyName]] = ele[valueName]
-  //         }
-  //       });
-  //       payload[address[0]] = data
-  //     }
-
-  //   }
-
-  //   return next(payload)
-  // })
-
-
   node.on("input", ({ payload }) => {
     timer && clearTimeout(timer)
     timer = setTimeout(() => {
