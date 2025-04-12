@@ -7,7 +7,7 @@ export const repeats = function (node: FormKitNode) {
   node.props.min = node.props.min ? Number(node.props.min) : 0;
   node.props.max = node.props.max ? Number(node.props.max) : 1 / 0;
   let timer: any
-  
+
   node.on("input", ({ payload }) => {
     timer && clearTimeout(timer)
     timer = setTimeout(() => {
@@ -78,5 +78,11 @@ function repeaterFeature(node: FormKitNode) {
       const value = node._value as unknown[];
       value.splice(index, 1), node.input(value, false);
     };
+
+    node.context.errorsCountMap = {}
+    node.context.hideCollaspeErrors = true
+    fns.findCount = (index: number) => {
+      return (node.context?.errorsCountMap as Record<number, number>)[index]
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { FormKitNode } from "@formkit/core";
 import { createRepeaterSection } from "../repeaterSection";
 
 const repeaterSection = createRepeaterSection();
@@ -18,6 +19,42 @@ export const addButton = repeaterSection("addButton", () => ({
 export const group = repeaterSection("group", () => ({
   $formkit: "group",
   index: "$index",
+  plugins: [
+    (node: FormKitNode) => {
+      if (node.props.type == "group") {
+        node.on('count:errors', ({ payload: count }) => {
+          node.props.errorCount = count
+        })
+        node.on('count:blocking', ({ payload: count }) => {
+          node.props.blockingCount = count
+        })
+
+        function updateTotalErrorCount(node: FormKitNode) {
+          node.props.totalErrorCount =
+            node.props.errorCount + node.props.blockingCount
+
+          if (node.parent?.context) {
+            (node.parent.context.errorsCountMap as Record<number, number>)[node.props.index] = node.props.totalErrorCount
+          }
+        }
+        node.on('prop:errorCount', () => updateTotalErrorCount(node))
+        node.on('prop:blockingCount', () => updateTotalErrorCount(node))
+        node.on('prop:totalErrorCount', () => {
+          node.props.isValid = node.props.totalErrorCount <= 0
+        })
+
+        node.on('message-added', ({ payload }) => {
+          if (payload.key === 'submitted') {
+            updateTotalErrorCount(node)
+
+            if (node.parent?.context) {
+              node.parent.context.hideCollaspeErrors = false
+            }
+          }
+        })
+      }
+    }
+  ]
 }));
 
 export const collapseWrapper = repeaterSection("collapseWrapper", () => ({
@@ -45,13 +82,13 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
       {
         $el: 'div',
         attrs: {
-          style: 'display: flex; align-items: center; width: 100%;'
+          style: 'display: flex; align-items: center; width: 100%;background-color: #fafafa;'
         },
         children: [
           {
             $el: 'div',
             attrs: {
-              style: 'flex: 1;display: flex;align-items: center;justify-content: flex-start;'
+              style: 'flex: 1;display: flex;align-items: center;justify-content: flex-start;padding-left: 10px;'
             },
             children: [{
               $el: 'div',
@@ -64,7 +101,7 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
                   then: {
                     $cmp: 'ElIcon',
                     props: {
-                      size: 20,
+                      size: 16,
                     },
                     children: [{
                       $cmp: 'ArrowDown'
@@ -73,7 +110,7 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
                   else: {
                     $cmp: 'ElIcon',
                     props: {
-                      size: 20,
+                      size: 16,
                     },
                     children: [{
                       $cmp: 'ArrowRight'
@@ -82,14 +119,37 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
                 }
               ]
             }, {
-              $el: 'span',
-              attrs: {
-                style: 'font-size: 16px;'
+              if: "$: $fns.findCount($index) > 0",
+              then: {
+                $cmp: 'ElBadge',
+                props: {
+                  value: "$fns.findCount($index)",
+                  offset: [10, 16],
+                  hidden: "$hideCollaspeErrors"
+                },
+                children: [
+                  {
+                    $el: 'span',
+                    attrs: {
+                      style: 'font-size: 16px;'
+                    },
+                    children: [
+                      "$: '#' +($index + 1) + '.' + $label"
+                    ]
+                  }
+                ]
               },
-              children: [
-                "$: '#' +($index + 1) + '.' + $label"
-              ]
-            }]
+              else: {
+                $el: 'span',
+                attrs: {
+                  style: 'font-size: 16px;'
+                },
+                children: [
+                  "$: '#' +($index + 1) + '.' + $label"
+                ]
+              }
+            }
+          ]
           },
           {
             $el: 'div',

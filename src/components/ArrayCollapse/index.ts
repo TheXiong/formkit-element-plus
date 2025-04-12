@@ -4,7 +4,7 @@ import {
     createSection,
 } from "@formkit/inputs";
 import { addButton, group, item, collapse, collapseItem, content, collapseWrapper } from "./sections";
-import { ElCard, ElIcon, ElCollapse, ElCollapseItem } from "element-plus";
+import { ElCard, ElIcon, ElCollapse, ElCollapseItem, ElBadge } from "element-plus";
 import { Bottom, CirclePlusFilled, DeleteFilled, Top, ArrowRight, ArrowDown } from "@element-plus/icons-vue";
 import { repeats } from "./features/repeats";
 import FormItem  from "../FormItem.vue";
@@ -57,6 +57,7 @@ export const ArrayCollapse: FormKitTypeDefinition = {
         ElCollapse,
         ElCollapseItem,
         ArrowRight,
-        ArrowDown
+        ArrowDown,
+        ElBadge
     },
 };
