@@ -69,6 +69,7 @@ let router = createRouter({
         { path: '/repeater', component: () => import('./pages/repeater.vue') },
         { path: '/arrayCards', component: () => import('./pages/arrayCards.vue') },
         { path: '/arrayCollapse', component: () => import('./pages/arrayCollapse.vue') },
+        { path: '/arrayItems', component: () => import('./pages/arrayItems.vue') },
     ],
 })
 

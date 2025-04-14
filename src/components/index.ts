@@ -30,6 +30,7 @@ import FormUpload from './FormUpload'
 import { repeater } from './repeater/index';
 import { ArrayCards } from './ArrayCards/index';
 import { ArrayCollapse } from './ArrayCollapse/index'
+import { ArrayItems } from './ArrayItems/index';
 import { forms, disablesChildren, createSection, options, FormKitInputs } from '@formkit/inputs';
 import { ElForm, UploadUserFile } from 'element-plus';
 
@@ -105,7 +106,8 @@ export const ElementPlusInputs: FormKitLibrary = {
     },
     "elArrayTable": repeater,
     "elArrayCards": ArrayCards,
-    "elArrayCollapse": ArrayCollapse
+    "elArrayCollapse": ArrayCollapse,
+    "elArrayItems": ArrayItems
 }
 
 declare module "@formkit/inputs" {
@@ -213,6 +215,10 @@ declare module "@formkit/inputs" {
         },
         "elArrayCollapse": {
             type: "elArrayCollapse";
+            value?: any[];
+        },
+        "elArrayItems": {
+            type: "elArrayItems";
             value?: any[];
         }
     }
