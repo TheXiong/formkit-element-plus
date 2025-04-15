@@ -6,45 +6,10 @@
       <h3>基本用法</h3>
       <FormKit
         type="elForm"
+        v-model="basicData"
         #default="{value}"
       >
-        <FormKit
-          type="elArrayTabs"
-          name="tabs"
-          label="人员信息"
-          validation="required"
-          :min="1"
-          :max="5"
-          add-label="添加人员"
-        >
-          <FormKit
-            type="elInput"
-            name="name"
-            label="姓名"
-            validation="required"
-          />
-          <FormKit
-            type="elInput"
-            name="age"
-            label="年龄"
-            validation="number|required"
-          />
-          <FormKit
-            type="elSelect"
-            name="gender"
-            label="性别"
-            validation="required"
-            :options="[
-              { label: '男', value: 'male' },
-              { label: '女', value: 'female' }
-            ]"
-          />
-          <FormKit
-            type="elInput"
-            name="phone"
-            label="电话"
-          />
-        </FormKit>
+        <FormKitSchema :schema="basicSchema" />
         
         <div class="result">
           <pre>{{ JSON.stringify(value, null, 2) }}</pre>
@@ -56,43 +21,10 @@
       <h3>自定义样式</h3>
       <FormKit
         type="elForm"
+        v-model="customData"
         #default="{value}"
       >
-        <FormKit
-          type="elArrayTabs"
-          name="projects"
-          label="项目信息"
-          validation="required"
-          :min="1"
-          tabType="card"
-          tabPosition="left"
-          :closable="false"
-          add-label="添加项目"
-        >
-          <FormKit
-            type="elInput"
-            name="name"
-            label="项目名称"
-            validation="required"
-          />
-          <FormKit
-            type="elDatePicker"
-            name="startDate"
-            label="开始日期"
-            validation="required"
-          />
-          <FormKit
-            type="elTextarea"
-            name="description"
-            label="项目描述"
-            validation="required"
-          />
-          <FormKit
-            type="elInputNumber"
-            name="budget"
-            label="预算"
-          />
-        </FormKit>
+        <FormKitSchema :schema="customSchema" />
         
         <div class="result">
           <pre>{{ JSON.stringify(value, null, 2) }}</pre>
@@ -102,7 +34,95 @@
   </div>
 </template>
 
-<style scoped>
+<script setup>
+import { ref } from 'vue';
+import FormKitSchema from '../components/FormKitSchema.ts';
+
+const basicData = ref({});
+const customData = ref({});
+
+const basicSchema = [
+  {
+    $formkit: 'elArrayTabs',
+    name: 'tabs',
+    label: '人员信息',
+    validation: 'required',
+    min: 1,
+    max: 5,
+    'add-label': '添加人员',
+    children: [
+      {
+        $formkit: 'elInput',
+        name: 'name',
+        label: '姓名',
+        validation: 'required'
+      },
+      {
+        $formkit: 'elInput',
+        name: 'age',
+        label: '年龄',
+        validation: 'number|required'
+      },
+      {
+        $formkit: 'elSelect',
+        name: 'gender',
+        label: '性别',
+        validation: 'required',
+        options: [
+          { label: '男', value: 'male' },
+          { label: '女', value: 'female' }
+        ]
+      },
+      {
+        $formkit: 'elInput',
+        name: 'phone',
+        label: '电话'
+      }
+    ]
+  }
+];
+
+const customSchema = [
+  {
+    $formkit: 'elArrayTabs',
+    name: 'projects',
+    label: '项目信息',
+    validation: 'required',
+    min: 1,
+    tabType: 'card',
+    tabPosition: 'left',
+    closable: false,
+    'add-label': '添加项目',
+    children: [
+      {
+        $formkit: 'elInput',
+        name: 'name',
+        label: '项目名称',
+        validation: 'required'
+      },
+      {
+        $formkit: 'elDatePicker',
+        name: 'startDate',
+        label: '开始日期',
+        validation: 'required'
+      },
+      {
+        $formkit: 'elTextarea',
+        name: 'description',
+        label: '项目描述',
+        validation: 'required'
+      },
+      {
+        $formkit: 'elInputNumber',
+        name: 'budget',
+        label: '预算'
+      }
+    ]
+  }
+];
+</script>
+
+<style>
 .card {
   background-color: #fff;
   border-radius: 4px;
@@ -135,6 +155,6 @@ pre {
 }
 
 .el-form-item .el-form-item {
-    margin-bottom: 18px !important;
-  }
-</style> 
+  margin-bottom: 18px !important;
+}
+</style>

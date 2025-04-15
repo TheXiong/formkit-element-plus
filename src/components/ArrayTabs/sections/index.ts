@@ -105,7 +105,8 @@ export const tabPane = arrayTabsSection("tabPane", () => ({
                     size: "small",
                     type: "text",
                     onClick: "$fns.copy($index)",
-                    disabled: "$value.length >= $max"
+                    disabled: "$value.length >= $max",
+                    style: "padding: 0;"
                   },
                   children: [
                     {
@@ -139,7 +140,8 @@ export const tabPane = arrayTabsSection("tabPane", () => ({
                     size: "small",
                     type: "text",
                     onClick: "$fns.remove($index)",
-                    disabled: "$value.length <= $min"
+                    disabled: "$value.length <= $min",
+                    style: "padding: 0;"
                   },
                   children: [
                     {
