@@ -31,6 +31,7 @@ import { repeater } from './repeater/index';
 import { ArrayCards } from './ArrayCards/index';
 import { ArrayCollapse } from './ArrayCollapse/index'
 import { ArrayItems } from './ArrayItems/index';
+import { ArrayTabs } from './ArrayTabs/index';
 import { forms, disablesChildren, createSection, options, FormKitInputs } from '@formkit/inputs';
 import { ElForm, UploadUserFile } from 'element-plus';
 
@@ -107,7 +108,8 @@ export const ElementPlusInputs: FormKitLibrary = {
     "elArrayTable": repeater,
     "elArrayCards": ArrayCards,
     "elArrayCollapse": ArrayCollapse,
-    "elArrayItems": ArrayItems
+    "elArrayItems": ArrayItems,
+    "elArrayTabs": ArrayTabs
 }
 
 declare module "@formkit/inputs" {
@@ -219,6 +221,10 @@ declare module "@formkit/inputs" {
         },
         "elArrayItems": {
             type: "elArrayItems";
+            value?: any[];
+        },
+        "elArrayTabs": {
+            type: "elArrayTabs";
             value?: any[];
         }
     }
