@@ -36,7 +36,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import FormKitSchema from '../components/FormKitSchema.ts';
 
 const basicData = ref({});
 const customData = ref({});

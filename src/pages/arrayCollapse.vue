@@ -1,6 +1,6 @@
 <template>
     <FormKit ref="myForm" type="el-form" v-model="data" @submit="onSubmit">
-      <FormKitSchema1 :schema="schema" />
+      <FormKitSchema :schema="schema" />
   
       <template #footer="{ disabled, node }">
         <el-button
@@ -18,13 +18,9 @@
   
   <script>
   import { ref, defineComponent, watch } from 'vue'
-  import FormKitSchema1 from '../components/FormKitSchema.ts'
   
   export default defineComponent({
     name: 'InputDemo',
-    components: {
-      FormKitSchema1
-    },
     setup() {
       const data = ref()
       const myForm = ref()
