@@ -1,4 +1,4 @@
-import { FormKitGroupValue, FormKitLibrary } from '@formkit/core';
+import { FormKitGroupValue, FormKitLibrary, FormKitPlugin } from '@formkit/core';
 import Input from './Input'
 import Textarea from './Textarea'
 import Rate from './Rate'
@@ -34,6 +34,11 @@ import { ArrayItems } from './ArrayItems/index';
 import { ArrayTabs } from './ArrayTabs/index';
 import { forms, disablesChildren, createSection, options, FormKitInputs } from '@formkit/inputs';
 import { ElForm, UploadUserFile } from 'element-plus';
+import { App } from 'vue';
+import { plugin, defaultConfig, DefaultConfigOptions } from '@formkit/vue';
+import { createAutoAnimatePlugin, createOptionsLoaderPlugin } from './plugins';
+import FormKitSchema from './FormKitSchema';
+import FormKit from './FormKit';
 
 export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin } from "./plugins"
 
@@ -68,7 +73,7 @@ export const ElementPlusInputs: FormKitLibrary = {
     }),
     "elSlider": createFormItemInput(Slider),
     "elTimeSelect": createFormItemInput(TimeSelect),
-    "elUpload": createFormItemInput(Upload, {props: ["valueGetter", "valueSetter", "valueType"]}),
+    "elUpload": createFormItemInput(Upload, { props: ["valueGetter", "valueSetter", "valueType"] }),
     "elAutocomplete": createFormItemInput(Autocomplete),
     "elRate": createFormItemInput(Rate),
     "elSelect": createFormItemInput(Select, {
@@ -110,6 +115,42 @@ export const ElementPlusInputs: FormKitLibrary = {
     "elArrayCollapse": ArrayCollapse,
     "elArrayItems": ArrayItems,
     "elArrayTabs": ArrayTabs
+}
+
+export const FormKitElementPlusPlugin = {
+    install(app: App, options?: DefaultConfigOptions) {
+        app.use(plugin, defaultConfig({
+            ...options,
+            plugins: [
+                createOptionsLoaderPlugin(),
+                createAutoAnimatePlugin({
+                        // optional config
+                        duration: 250,
+                        easing: 'ease-in-out',
+                        // delay: 0,
+                    },
+                    {
+                        // optional animation targets object
+                        global: ['outer', 'inner'],
+                        form: ['form', 'ElForm'],
+                        repeater: ['items'],
+                    }
+                ),
+                ...(options?.plugins || [])
+            ],
+            inputs: {
+                ...ElementPlusInputs,
+                ...(options?.inputs || {})
+            }
+        }))
+
+        app.use({
+            install(app) {
+                app._context.components['FormKitSchema'] = FormKitSchema
+                app._context.components['FormKit'] = FormKit
+            }
+        })
+    }
 }
 
 declare module "@formkit/inputs" {
@@ -164,7 +205,7 @@ declare module "@formkit/inputs" {
         };
         "elCheckbox": {
             type: "elCheckbox";
-            value?: 	
+            value?:
             string | number | boolean;
         };
         "elSlider": {

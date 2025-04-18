@@ -7,8 +7,7 @@ import 'element-plus/dist/index.css'
 
 import App from './App.vue'
 
-import { plugin, defaultConfig } from '@formkit/vue'
-import { ElementPlusInputs, createAutoAnimatePlugin, createOptionsLoaderPlugin, FormKitSchema, formkitComponent as FormKit } from "./components";
+import { FormKitElementPlusPlugin } from "./components";
 import '@formkit/themes/genesis'
 
 const app = createApp(App);
@@ -20,31 +19,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 
 app.use(ElementPlus)
-app.use(plugin, defaultConfig({
-    plugins: [createOptionsLoaderPlugin(), createAutoAnimatePlugin({
-        // optional config
-        duration: 250,
-        easing: 'ease-in-out',
-        // delay: 0,
-    },
-        {
-            // optional animation targets object
-            global: ['outer', 'inner'],
-            form: ['form', 'ElForm'],
-            repeater: ['items'],
-        })
-    ],
-    inputs: {
-        ...ElementPlusInputs
-    }
-}))
-
-app.use({
-    install(app) {
-        app._context.components['FormKitSchema'] = FormKitSchema
-        app._context.components['FormKit'] = FormKit
-    }
-})
+app.use(FormKitElementPlusPlugin)
 
 let router = createRouter({
     history: createWebHistory(),
