@@ -48,6 +48,7 @@ export default {
     },
     setup(props) {
         const render = () => {
+            // @ts-ignore
             return h(FormKit, { type: "group", index: props.rowIndex }, () =>
                 props.cells.map((cell, index) => {
                     if (props.columns[index].dataKey === 'action' || props.columns[index].dataKey === 'index' || props.columns[index].dataKey === 'drag') {
