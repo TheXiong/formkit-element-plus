@@ -1,13 +1,7 @@
-<template>
-    <div>
-        {{ render() }}
-    </div>
-</template>
-
 <script lang="ts">
 import { h } from "vue";
-import FormKit from "../FormKit.ts";
-import FormKitSchema from "../FormKitSchema.ts";
+import FormKit from "../FormKit";
+import FormKitSchema from "../FormKitSchema";
 
 export default {
     props: {
