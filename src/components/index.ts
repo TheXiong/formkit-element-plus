@@ -36,11 +36,11 @@ import { forms, disablesChildren, createSection, options, FormKitInputs } from '
 import { ElForm, UploadUserFile } from 'element-plus';
 import { App } from 'vue';
 import { plugin, defaultConfig, DefaultConfigOptions } from '@formkit/vue';
-import { createAutoAnimatePlugin, createOptionsLoaderPlugin } from './plugins';
+import { createAutoAnimatePlugin, createDuplicatePropPlugin, createOptionsLoaderPlugin } from './plugins';
 import FormKitSchema from './FormKitSchema';
 import FormKit from './FormKit';
 
-export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin } from "./plugins"
+export { createOptionsLoaderPlugin, createComputedValuePlugin, createAutoAnimatePlugin, createDuplicatePropPlugin } from "./plugins"
 
 export * from './FormKitSchema'
 export * from './FormKit'
@@ -123,6 +123,7 @@ export const FormKitElementPlusPlugin = {
             ...options,
             plugins: [
                 createOptionsLoaderPlugin(),
+                createDuplicatePropPlugin(),
                 createAutoAnimatePlugin({
                         // optional config
                         duration: 250,
