@@ -30,7 +30,7 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ['vue',"@formkit/vue","element-plus"],
+      external: ['vue',"@formkit/vue","element-plus","@formkit/core","@formkit/inputs"],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps

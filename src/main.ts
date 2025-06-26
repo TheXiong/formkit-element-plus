@@ -46,6 +46,7 @@ let router = createRouter({
         { path: '/arrayCollapse', component: () => import('./pages/arrayCollapse.vue') },
         { path: '/arrayItems', component: () => import('./pages/arrayItems.vue') },
         { path: '/arrayTabs', component: () => import('./pages/arrayTabs.vue') },
+        { path: '/schema', component: () => import('./pages/schema.vue') },
     ],
 })
 
