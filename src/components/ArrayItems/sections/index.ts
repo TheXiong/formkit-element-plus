@@ -1,4 +1,5 @@
 import { createRepeaterSection } from "../repeaterSection";
+import { Menu } from "@element-plus/icons-vue";
 
 // 创建我们的数组项部分
 const arrayItemsSection = createRepeaterSection();
@@ -143,15 +144,17 @@ export const drag = arrayItemsSection('drag', () => ({
   $el: 'div',
   attrs: {
     class: 'handle',
-    style: 'width: 24px;height: 24px;display: flex;align-items: center;justify-content: center;'
+    style: 'display: flex;align-items: center;justify-content: center;'
   },
   children: [
     {
-      $cmp: 'Menu',
+      $cmp: 'ElButton',
       props: {
         size: 20,
+        icon: Menu,
         style: 'cursor: move;'
       },
+
     }
   ]
 }));

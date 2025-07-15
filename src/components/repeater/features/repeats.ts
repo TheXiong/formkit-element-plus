@@ -1,7 +1,7 @@
 import type { FormKitNode } from "@formkit/core";
 import { undefine } from "@formkit/utils";
 import { computed, onMounted } from "vue";
-import { Bottom, CirclePlusFilled, DeleteFilled, Top } from "@element-plus/icons-vue";
+import { Bottom, CirclePlusFilled, DeleteFilled, Top, Menu } from "@element-plus/icons-vue";
 import Sortable from "sortablejs";
 
 export const repeats = function (node: FormKitNode) {
@@ -93,6 +93,8 @@ function repeaterFeature(node: FormKitNode) {
   node.props.addAttrs = node.props.addAttrs ?? {};
   node.props.controlAttrs = node.props.controlAttrs ?? {};
   node.props.actionWidth = node.props.actionWidth ?? 0;
+  node.props.sortable = node.props.sortable ?? false;
+  node.props.showIndex = node.props.showIndex ?? false;
 
   if (node.props.min > node.props.max) {
     throw Error("Repeater: min must be less than max");
@@ -174,42 +176,48 @@ function repeaterFeature(node: FormKitNode) {
         }
       })
 
-      tableColumns.unshift({
-        key: 'index',
-        dataKey: 'index',
-        title: '序号',
-        width: 100,
-        flexGrow: 0,
-        columnSchema: {
-          $el: 'span',
-          children: '$index + 1'
-        }
-      })
+      console.log(node.context, 'sss')
+      if(node.context.showIndex) {
+        tableColumns.unshift({
+          key: 'index',
+          dataKey: 'index',
+          title: '序号',
+          width: 100,
+          flexGrow: 0,
+          columnSchema: {
+            $el: 'span',
+            children: '$index + 1'
+          }
+        })
+      }
 
-      tableColumns.unshift({
-        key: 'drag',
-        dataKey: 'drag',
-        title: '排序',
-        width: 100,
-        flexGrow: 0,
-        columnSchema: {
-          $el: 'div',
-          attrs: {
-            class: 'handle',
-            style: 'width: 24px;height: 24px;display: flex;align-items: center;justify-content: center;'
+      if(node.context.sortable) {
+        tableColumns.unshift({
+          key: 'drag',
+          dataKey: 'drag',
+          title: '排序',
+          width: 100,
+          flexGrow: 0,
+          columnSchema: {
+            $el: 'div',
+            attrs: {
+              class: 'handle',
+              style: 'display: flex;align-items: center;justify-content: center;'
+            },
+            children: [
+              {
+                $cmp: 'ElButton',
+                props: {
+                  size: 20,
+                  icon: Menu,
+                  style: 'cursor: move;'
+                },
+
+              }
+            ]
           },
-          children: [
-            {
-              $cmp: 'Menu',
-              props: {
-                size: 20,
-                style: 'cursor: move;'
-              },
-
-            }
-          ]
-        },
-      })
+        })
+      }
 
       onMounted(() => {
         const el = document.querySelector('.drag-table .el-table-v2__body>div>div')

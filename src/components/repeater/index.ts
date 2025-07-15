@@ -54,7 +54,9 @@ export const repeater: FormKitTypeDefinition = {
         "columns",
         "valueType",
         "help",
-        "actionWidth"
+        "actionWidth",
+        "sortable",
+        "showIndex"
     ],
     /**
      * Additional features that make this input work.
@@ -73,7 +75,7 @@ export const repeater: FormKitTypeDefinition = {
         ElTableV2,
         TableRow,
         ElAutoResizer,
-        Menu,
+        DragMenu: Menu,
         ElEmpty
     },
 };

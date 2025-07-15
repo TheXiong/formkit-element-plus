@@ -1,4 +1,4 @@
-import { FormKitNode, FormKitPlugin } from '@formkit/core'
+import { FormKitNode, FormKitPlugin, getNode } from '@formkit/core'
 import { normalizeOptions } from '@formkit/inputs'
 import { nextTick } from 'vue';
 
@@ -16,24 +16,27 @@ export function createOptionsLoaderPlugin(
         const depIds = (node.context?.optionsDepIds as string[]) || []
         const loader = node.context?.optionsLoader as Function;
 
-        const loadOptions = async (param: Record<string, any>) => {
-          try {
-            if (node.context) {
-              node.context.attrs.loading = true
-              const options = await loader(param)
-              node.context.attrs.loading = false
-              node.context.options = options
+        let timer
+        const loadOptions = (param: Record<string, any>) => {
+          timer && clearTimeout(timer)
+          timer = setTimeout(async ()=>{
+            try {
+              if (node.context) {
+                node.context.attrs.loading = true
+                const options = await loader(param)
+                node.context.attrs.loading = false
+                node.context.options = options
+              }
+            } catch (error) {
+              if (node.context) {
+                node.context!.options = []
+              }
             }
-          } catch (error) {
-            if (node.context) {
-              node.context!.options = []
-            }
-          }
-
+          }, 100)
         }
 
         nextTick(() => {
-          const depNodes: Array<FormKitNode | undefined> = depIds.map(node.at)
+          const depNodes: Array<FormKitNode | undefined> = depIds.map(getNode)
           depNodes.forEach(dNode => {
             if (dNode) {
               dNode.on('commit', () => {
