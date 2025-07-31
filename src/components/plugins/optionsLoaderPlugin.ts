@@ -26,6 +26,7 @@ export function createOptionsLoaderPlugin(
                 const options = await loader(param)
                 node.context.attrs.loading = false
                 node.context.options = options
+                node.input(null)
               }
             } catch (error) {
               if (node.context) {
