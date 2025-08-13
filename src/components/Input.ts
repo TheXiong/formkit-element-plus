@@ -1,5 +1,5 @@
 import { ElInput } from "element-plus";
-import { defineComponent, h, computed, watch } from "vue";
+import { defineComponent, h, watch, ref } from "vue";
 
 export default defineComponent({
     props: ["context"],
@@ -8,22 +8,24 @@ export default defineComponent({
             props.context.classes.inner = "";
         }
 
-        const value = computed({
-            get() {
-                return props.context.value;
-            },
-            set(val) {
-                props.context.node.input(val);
-            },
-        });
+        const localValue = ref(props.context.value);
+
+        watch(
+            () => props.context.value,
+            (val) => {
+                // 外部值变化时才更新本地值
+                localValue.value = val;
+            }
+        );
 
         return () => {
             return h(
                 ElInput,
                 {
-                    modelValue: value.value,
+                    modelValue: localValue.value,
                     "onUpdate:modelValue": (val: any) => {
-                        value.value = val;
+                        localValue.value = val;
+                        props.context.node.input(val);
                     },
                     onBlur() {
                         props.context.handlers.blur();
