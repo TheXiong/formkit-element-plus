@@ -21,6 +21,7 @@ import Transfer from './Transfer'
 import CheckboxGroup from './CheckboxGroup';
 import Tree from './Tree';
 import TreeSelect from './TreeSelect';
+import Mention from './mention'
 
 import createFormItemInput from './createFormItemInput';
 
@@ -114,7 +115,8 @@ export const ElementPlusInputs: FormKitLibrary = {
     "elArrayCards": ArrayCards,
     "elArrayCollapse": ArrayCollapse,
     "elArrayItems": ArrayItems,
-    "elArrayTabs": ArrayTabs
+    "elArrayTabs": ArrayTabs,
+    "elMention": createFormItemInput(Mention),
 }
 
 export const FormKitElementPlusPlugin = {
@@ -268,6 +270,10 @@ declare module "@formkit/inputs" {
         "elArrayTabs": {
             type: "elArrayTabs";
             value?: any[];
+        },
+        "elMention": {
+            type: "elMention";
+            value?: string;
         }
     }
 }
