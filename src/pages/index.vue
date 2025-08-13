@@ -152,7 +152,7 @@ const optionsLoader = () => {
 
       <FormKit type="el-date-picker" name="date3" label="elDatePicker" />
 
-      <FormKit type="el-date-range-picker" name="dateRangePicker1" label="elDateRangePicker1" />
+      <FormKit type="el-date-range-picker" name="dateRangePicker1" $$type="datetimerange" label="elDateRangePicker1" />
 
       <FormKit type="el-time-picker" name="time2" label="elTimePicker" />
 

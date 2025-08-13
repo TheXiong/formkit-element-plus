@@ -18,8 +18,6 @@ export default defineComponent({
         });
         return () => {
             return h(ElDatePicker, {
-                valueFormat: "YYYY-MM-DD",
-                type: "daterange",
                 modelValue: value.value,
                 "onUpdate:modelValue": (val: any) => {
                     value.value = val;
