@@ -48,6 +48,7 @@ let router = createRouter({
         { path: '/arrayTabs', component: () => import('./pages/arrayTabs.vue') },
         { path: '/schema', component: () => import('./pages/schema.vue') },
         { path: '/mention', component: () => import('./pages/mention.vue') },
+        { path: '/inputTag', component: () => import('./pages/inputTag.vue') },
     ],
 })
 
