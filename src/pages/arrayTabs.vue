@@ -6,6 +6,7 @@
       <h3>基本用法</h3>
       <FormKit
         type="elForm"
+        label-width="80px"
         v-model="basicData"
         #default="{value}"
       >
@@ -21,6 +22,7 @@
       <h3>自定义样式</h3>
       <FormKit
         type="elForm"
+        label-width="80px"
         v-model="customData"
         #default="{value}"
       >
@@ -151,9 +153,5 @@ h3 {
 pre {
   white-space: pre-wrap;
   word-wrap: break-word;
-}
-
-.el-form-item .el-form-item {
-  margin-bottom: 18px !important;
 }
 </style>

@@ -20,7 +20,7 @@ export const addButton = arrayTabsSection("addButton", () => ({
 export const tabsWrapper = arrayTabsSection("tabsWrapper", () => ({
   $el: "div",
   attrs: {
-    style: "width: 100%;"
+    class: "formkit-tabs-wrapper",
   },
 }));
 
@@ -49,44 +49,37 @@ export const tabPane = arrayTabsSection("tabPane", () => ({
     {
       $formkit: "group",
       index: "$index",
-      children: "$slots.default"
-    }
+      children: "$slots.default",
+    },
   ],
   slots: {
     label: {
       $el: "div",
       attrs: {
-        style: "display: flex; align-items: center; gap: 4px;"
+        class: "formkit-tabs-label",
       },
       children: [
         // 标签页标题
         {
-          $el: "span",
+          $cmp: "ElBadge",
           if: "$showIndex",
-          children: [
-            {
-              $el: "b",
-              children: [
-                {
-                  $cmp: "ElBadge",
-                  props: {
-                    value: "$index + 1",
-                    type: "primary"
-                  }
-                }
-              ]
-            }
-          ]
+          props: {
+            value: "$index + 1",
+            type: "primary",
+          },
         },
         {
-          $el: "span",
-          children: "$label"
+          $el: "div",
+          children: "$label",
+          attrs: {
+            class: "formkit-tabs-title",
+          }
         },
         // 操作按钮
         {
           $el: "div",
           attrs: {
-            style: "display: flex; align-items: center; margin-left: 8px;"
+            class: "formkit-tabs-actions",
           },
           children: [
             // 复制按钮
@@ -95,7 +88,7 @@ export const tabPane = arrayTabsSection("tabPane", () => ({
               props: {
                 content: "Copy",
                 placement: "top",
-                effect: "light"
+                effect: "light",
               },
               if: "$showCopy",
               children: [
@@ -106,23 +99,25 @@ export const tabPane = arrayTabsSection("tabPane", () => ({
                     type: "text",
                     onClick: "$fns.copy($index)",
                     disabled: "$value.length >= $max",
-                    style: "padding: 0;"
+                  },
+                  attrs: {
+                    class: "formkit-tabs-button",
                   },
                   children: [
                     {
                       $cmp: "ElIcon",
                       props: {
-                        size: 14
+                        size: 14,
                       },
                       children: [
                         {
-                          $cmp: "CopyDocument"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+                          $cmp: "CopyDocument",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             // 删除按钮
             {
@@ -130,7 +125,7 @@ export const tabPane = arrayTabsSection("tabPane", () => ({
               props: {
                 content: "Remove",
                 placement: "top",
-                effect: "light"
+                effect: "light",
               },
               if: "$showRemove",
               children: [
@@ -141,33 +136,35 @@ export const tabPane = arrayTabsSection("tabPane", () => ({
                     type: "text",
                     onClick: "$fns.remove($index)",
                     disabled: "$value.length <= $min",
-                    style: "padding: 0;"
+                  },
+                  attrs: {
+                    class: "formkit-tabs-button",
                   },
                   children: [
                     {
                       $cmp: "ElIcon",
                       props: {
-                        size: 14
+                        size: 14,
                       },
                       children: [
                         {
-                          $cmp: "Delete"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  }
+                          $cmp: "Delete",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
 }));
 
 // 项目迭代器
 export const item = arrayTabsSection("item", () => ({
   $el: "div",
   for: ["item", "index", "$items"],
-})); 
+}));

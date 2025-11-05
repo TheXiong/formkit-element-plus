@@ -1,5 +1,5 @@
 <template>
-    <FormKit ref="myForm" type="el-form" v-model="data" @submit="onSubmit">
+    <FormKit ref="myForm" type="el-form" label-width="50px" v-model="data" @submit="onSubmit">
       <FormKitSchema :schema="schema" />
   
       <template #footer="{ disabled, node }">
@@ -76,9 +76,3 @@
     },
   })
   </script>
-  
-  <style>
-  .el-form-item .el-form-item {
-    margin-bottom: 18px !important;
-  }
-  </style>

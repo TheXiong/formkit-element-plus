@@ -17,7 +17,7 @@ export const addButton = repeaterSection("addButton", () => ({
 export const Card = repeaterSection("blockWrapper", () => ({
   $el: 'div',
   attrs: {
-    style: "width: 100%"
+    class: "formkit-repeater-wrapper"
   }
 }));
 
@@ -39,8 +39,10 @@ export const tableRepeater = repeaterSection('tableRepeater', () => {
           height: '$height',
           // cache: 100,
           "row-key": "_id",
-          class: 'drag-table'
+          class: 'drag-table',
           // "row-height": 67
+          headerClass: 'formkit-repeater-table-header',
+          rowClass: 'formkit-repeater-table-row',
         },
         slots: {
           row: {

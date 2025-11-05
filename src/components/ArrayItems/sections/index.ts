@@ -21,8 +21,7 @@ export const items = arrayItemsSection("items", () => ({
   $el: "ul",
   attrs: {
     role: "list",
-    style: "list-style: none; padding: 0; margin: 0; width: 100%; display: flex; flex-direction: column; gap: 16px;",
-    class: "drag-list"
+    class: "formkit-items-list drag-list"
   },
 }));
 
@@ -34,7 +33,7 @@ export const item = arrayItemsSection("item", () => ({
     role: "listitem",
     key: "$item",
     "data-index": "$index",
-    style: "display: flex; gap: 16px;align-items: center;"
+    class: "formkit-items-item"
   },
 }));
 
@@ -48,7 +47,7 @@ export const group = arrayItemsSection("group", () => ({
 export const content = arrayItemsSection("content", () => ({
   $el: 'div',
   attrs: {
-    style: 'display: flex; gap: 16px;'
+    class: 'formkit-items-content'
   },
   children: "$slots.default"
 }));
@@ -57,7 +56,7 @@ export const content = arrayItemsSection("content", () => ({
 export const operations = arrayItemsSection("operations", () => ({
   $el: 'div',
   attrs: {
-    style: 'display: flex; align-items: center;'
+    class: 'formkit-items-operations'
   },
   children: [
     {
@@ -136,25 +135,22 @@ export const operations = arrayItemsSection("operations", () => ({
 export const arrayItems = arrayItemsSection('arrayItems', () => ({
   $el: 'div',
   attrs: {
-    style: 'width: 100%;'
+    class: 'formkit-items-wrapper'
   },
 }));
 
 export const drag = arrayItemsSection('drag', () => ({
   $el: 'div',
   attrs: {
-    class: 'handle',
-    style: 'display: flex;align-items: center;justify-content: center;'
+    class: 'formkit-items-drag handle'
   },
   children: [
     {
       $cmp: 'ElButton',
       props: {
         size: 20,
-        icon: Menu,
-        style: 'cursor: move;'
-      },
-
+        icon: Menu
+      }
     }
   ]
 }));

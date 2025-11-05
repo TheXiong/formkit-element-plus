@@ -76,9 +76,3 @@
     },
   })
   </script>
-  
-  <style>
-  .el-form-item .el-form-item {
-    margin-bottom: 18px !important;
-  }
-  </style>

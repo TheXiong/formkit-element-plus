@@ -3,6 +3,7 @@ import type { FormKitTypeDefinition } from "@formkit/core";
 import {
     createSection,
 } from "@formkit/inputs";
+import './style.css';
 import { repeats } from "./features/repeats";
 import {
     addButton,

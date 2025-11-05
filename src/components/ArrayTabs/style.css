@@ -1,0 +1,51 @@
+/* ArrayTabs 组件样式 */
+
+/* tabsWrapper - 外层容器 */
+.formkit-tabs-wrapper {
+  width: 100%;
+}
+
+/* tabPane label - 标签页标题容器 */
+.formkit-tabs-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.formkit-tabs-label .el-badge {
+  display: flex;
+  align-items: center;
+}
+
+/* tabPane label - 操作按钮区域 */
+.formkit-tabs-actions {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  height: 100%;
+}
+
+.formkit-tabs-title {
+  display: flex;
+  align-items: center;
+}
+
+.formkit-tabs-actions .el-button {
+  padding: 0px;
+}
+.formkit-tabs-actions .el-button+.el-button {
+  margin-left: 6px;
+}
+
+/* tabPane label - 按钮样式 */
+.formkit-tabs-button {
+  padding: 0;
+}
+
+/* 表单项间距 */
+.formkit-tabs-wrapper .el-tab-pane .el-form-item {
+  margin-bottom: 18px;
+}
+
+.formkit-tabs-wrapper .el-tab-pane .el-form-item:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,53 @@
+/* ArrayItems 组件样式 */
+
+/* items - 列表容器 */
+.formkit-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* item - 单个项目容器 */
+.formkit-items-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* content - 内容区域 */
+.formkit-items-content {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
+/* operations - 操作按钮区域 */
+.formkit-items-operations {
+  display: flex;
+  align-items: center;
+}
+
+/* drag - 拖拽手柄 */
+.formkit-items-drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formkit-items-drag .el-button {
+  cursor: move;
+}
+
+/* arrayItems - 外层容器 */
+.formkit-items-wrapper {
+  width: 100%;
+}
+
+/* 表单项间距 */
+.formkit-items-list .el-form-item {
+  margin-bottom: 0;
+}

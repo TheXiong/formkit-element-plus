@@ -3,6 +3,7 @@ import type { FormKitTypeDefinition } from "@formkit/core";
 import {
     createSection,
 } from "@formkit/inputs";
+import './style.css';
 import { addButton, group, item, collapse, collapseItem, content, collapseWrapper } from "./sections";
 import { ElCard, ElIcon, ElCollapse, ElCollapseItem, ElBadge } from "element-plus";
 import { Bottom, CirclePlusFilled, DeleteFilled, Top, ArrowRight, ArrowDown } from "@element-plus/icons-vue";

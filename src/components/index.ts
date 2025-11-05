@@ -1,4 +1,9 @@
 import { FormKitGroupValue, FormKitLibrary, FormKitPlugin } from '@formkit/core';
+import './ArrayCollapse/style.css';
+import './ArrayCards/style.css';
+import './ArrayItems/style.css';
+import './ArrayTabs/style.css';
+import './repeater/style.css';
 import Input from './Input'
 import Textarea from './Textarea'
 import Rate from './Rate'

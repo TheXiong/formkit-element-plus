@@ -60,7 +60,7 @@ export const group = repeaterSection("group", () => ({
 export const collapseWrapper = repeaterSection("collapseWrapper", () => ({
   $el: "div",
   attrs: {
-    style: "width: 100%;"
+    class: "formkit-collapse-wrapper"
   },
 
 }));
@@ -68,7 +68,7 @@ export const collapseWrapper = repeaterSection("collapseWrapper", () => ({
 export const collapse = repeaterSection("collapse", () => ({
   $cmp: "ElCollapse",
   props: {
-    accordion: true,
+    accordion: false,
   }
 }));
 
@@ -82,18 +82,18 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
       {
         $el: 'div',
         attrs: {
-          style: 'display: flex; align-items: center; width: 100%;background-color: #fafafa;'
+          class: 'formkit-collapse-header'
         },
         children: [
           {
             $el: 'div',
             attrs: {
-              style: 'flex: 1;display: flex;align-items: center;justify-content: flex-start;padding-left: 10px;'
+              class: 'formkit-collapse-content'
             },
             children: [{
               $el: 'div',
               attrs: {
-                style: 'display: flex; align-items: center;margin-right: 10px;'
+                class: 'formkit-collapse-arrow'
               },
               children: [
                 {
@@ -131,7 +131,7 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
                   {
                     $el: 'span',
                     attrs: {
-                      style: 'font-size: 16px;'
+                      class: 'formkit-collapse-title'
                     },
                     children: [
                       "$: '#' +($index + 1) + '.' + $label"
@@ -142,7 +142,7 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
               else: {
                 $el: 'span',
                 attrs: {
-                  style: 'font-size: 16px;'
+                  class: 'formkit-collapse-title'
                 },
                 children: [
                   "$: '#' +($index + 1) + '.' + $label"
@@ -154,15 +154,17 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
           {
             $el: 'div',
             attrs: {
-              style: 'display: flex; align-items: center; justify-content: flex-end;gap: 10px;width: 200px;padding-right: 10px;'
+              class: 'formkit-collapse-actions'
             },
             children: [
               {
                 $cmp: 'ElIcon',
                 props: {
                   size: 16,
-                  onClick: "$fns.createShift($index, 1)",
-                  style: "cursor: pointer;"
+                  onClick: "$fns.createShift($index, 1)"
+                },
+                attrs: {
+                  class: 'formkit-collapse-icon'
                 },
                 children: [{
                   $cmp: 'Bottom'
@@ -172,8 +174,10 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
                 $cmp: 'ElIcon',
                 props: {
                   size: 16,
-                  onClick: "$fns.createShift($index, -1)",
-                  style: "cursor: pointer;"
+                  onClick: "$fns.createShift($index, -1)"
+                },
+                attrs: {
+                  class: 'formkit-collapse-icon'
                 },
                 children: [{
                   $cmp: 'Top'
@@ -183,8 +187,10 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
                 $cmp: 'ElIcon',
                 props: {
                   size: 16,
-                  onClick: "$fns.createRemover($index)",
-                  style: "cursor: pointer;"
+                  onClick: "$fns.createRemover($index)"
+                },
+                attrs: {
+                  class: 'formkit-collapse-icon'
                 },
                 children: [{
                   $cmp: 'DeleteFilled'
@@ -194,8 +200,10 @@ export const collapseItem = repeaterSection("collapseItem", () => ({
                 $cmp: 'ElIcon',
                 props: {
                   size: 16,
-                  onClick: "$fns.createInsert($index)",
-                  style: "cursor: pointer;"
+                  onClick: "$fns.createInsert($index)"
+                },
+                attrs: {
+                  class: 'formkit-collapse-icon'
                 },
                 children: [{
                   $cmp: 'CirclePlusFilled'
@@ -228,7 +236,7 @@ export const Card = repeaterSection("blockWrapper", () => ({
     header: {
       $el: 'div',
       attrs: {
-        style: 'display: flex; align-items: center; justify-content: space-between;'
+        class: 'formkit-card-header'
       },
       children: [
         {
@@ -238,15 +246,17 @@ export const Card = repeaterSection("blockWrapper", () => ({
         {
           $el: 'div',
           attrs: {
-            style: 'display: flex; align-items: center; justify-content: space-between;gap: 10px;'
+            class: 'formkit-card-actions'
           },
           children: [
             {
               $cmp: 'ElIcon',
               props: {
                 size: 20,
-                onClick: "$fns.createShift($index, 1)",
-                style: "cursor: pointer;"
+                onClick: "$fns.createShift($index, 1)"
+              },
+              attrs: {
+                class: 'formkit-card-icon'
               },
               children: [{
                 $cmp: 'Bottom'
@@ -256,8 +266,10 @@ export const Card = repeaterSection("blockWrapper", () => ({
               $cmp: 'ElIcon',
               props: {
                 size: 20,
-                onClick: "$fns.createShift($index, -1)",
-                style: "cursor: pointer;"
+                onClick: "$fns.createShift($index, -1)"
+              },
+              attrs: {
+                class: 'formkit-card-icon'
               },
               children: [{
                 $cmp: 'Top'
@@ -267,8 +279,10 @@ export const Card = repeaterSection("blockWrapper", () => ({
               $cmp: 'ElIcon',
               props: {
                 size: 20,
-                onClick: "$fns.createRemover($index)",
-                style: "cursor: pointer;"
+                onClick: "$fns.createRemover($index)"
+              },
+              attrs: {
+                class: 'formkit-card-icon'
               },
               children: [{
                 $cmp: 'DeleteFilled'
@@ -278,8 +292,10 @@ export const Card = repeaterSection("blockWrapper", () => ({
               $cmp: 'ElIcon',
               props: {
                 size: 20,
-                onClick: "$fns.createInsert($index)",
-                style: "cursor: pointer;"
+                onClick: "$fns.createInsert($index)"
+              },
+              attrs: {
+                class: 'formkit-card-icon'
               },
               children: [{
                 $cmp: 'CirclePlusFilled'

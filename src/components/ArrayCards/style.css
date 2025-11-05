@@ -1,0 +1,41 @@
+/* ArrayCards 组件样式 */
+
+/* items - 列表容器 */
+.formkit-cards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Card - 头部容器 */
+.formkit-cards-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Card - 操作按钮区域 */
+.formkit-cards-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Card - 图标按钮 */
+.formkit-cards-icon {
+  cursor: pointer;
+}
+
+/* 表单项间距 */
+.formkit-cards-list .el-card__body .el-form-item {
+  margin-bottom: 18px;
+}
+
+.formkit-cards-list .el-card__body .el-form-item:last-child {
+  margin-bottom: 0;
+}

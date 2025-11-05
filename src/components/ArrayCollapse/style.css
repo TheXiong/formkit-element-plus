@@ -1,0 +1,77 @@
+/* ArrayCollapse 组件样式 */
+
+/* collapseWrapper */
+.formkit-collapse-wrapper {
+  width: 100%;
+}
+
+/* collapseItem - 头部容器 */
+.formkit-collapse-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #fafafa;
+}
+
+/* collapseItem - 内容区域 */
+.formkit-collapse-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+/* collapseItem - 箭头图标容器 */
+.formkit-collapse-arrow {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+/* collapseItem - 标题文字 */
+.formkit-collapse-title {
+  font-size: 16px;
+}
+
+/* collapseItem - 操作按钮区域 */
+.formkit-collapse-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 200px;
+  padding-right: 10px;
+}
+
+/* collapseItem - 图标按钮 */
+.formkit-collapse-icon {
+  cursor: pointer;
+}
+
+/* Card - 头部容器 */
+.formkit-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Card - 操作按钮区域 */
+.formkit-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Card - 图标按钮 */
+.formkit-card-icon {
+  cursor: pointer;
+}
+
+.formkit-collapse-wrapper .el-collapse-item__content .formkit-content .el-form-item {
+  margin-bottom: 18px;
+}
+.formkit-collapse-wrapper .el-collapse-item__content .formkit-content .el-form-item:last-child {
+  margin-bottom: 0;
+}

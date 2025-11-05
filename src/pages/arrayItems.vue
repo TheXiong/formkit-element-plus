@@ -40,7 +40,8 @@
               label: `a`,
               inlinePrompt: true,
               value: true,
-              width: 100,
+              width: '100%',
+              style: 'width: 100%'
             },
             {
               $formkit: 'el-input',
@@ -75,9 +76,3 @@
     },
   })
   </script>
-  
-  <style>
-  .el-form-item .el-form-item {
-    margin-bottom: 0px !important;
-  }
-  </style>

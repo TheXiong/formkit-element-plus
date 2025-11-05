@@ -1,5 +1,6 @@
 import type { FormKitTypeDefinition } from "@formkit/core";
 import { createSection } from "@formkit/inputs";
+import './style.css';
 import { addButton, items, item, group, content, operations, arrayItems } from "./sections";
 import { repeats } from "./features/repeats";
 import AddButton from "./AddButton.vue";

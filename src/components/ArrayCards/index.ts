@@ -3,6 +3,7 @@ import type { FormKitTypeDefinition } from "@formkit/core";
 import {
     createSection,
 } from "@formkit/inputs";
+import './style.css';
 import { addButton, Card, group, item, items } from "./sections";
 import { ElCard, ElIcon } from "element-plus";
 import { Bottom, CirclePlusFilled, DeleteFilled, Top } from "@element-plus/icons-vue";
