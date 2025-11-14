@@ -17,17 +17,17 @@ export function createOptionsLoaderPlugin(
         const loader = node.context?.optionsLoader as Function;
 
         let timer
-        const loadOptions = (param: Record<string, any>) => {
+        const loadOptions = (param: Record<string, any>, init?: boolean) => {
           timer && clearTimeout(timer)
-          timer = setTimeout(async ()=>{
+          timer = setTimeout(async () => {
             try {
               if (node.context) {
                 node.context.attrs.loading = true
                 const options = await loader(param)
                 node.context.attrs.loading = false
                 node.context.options = options
-                
-                if (!options.find((ele) => ele.value === node.value)) {
+
+                if (!init && (!options.find((ele) => ele.value === node.value) || Array.isArray(node.value))) {
                   node.input(null);
                 }
               }
@@ -48,7 +48,7 @@ export function createOptionsLoaderPlugin(
                   depNodes.reduce((prev, dNode) => {
                     if (dNode) prev[dNode.name] = dNode?.value;
                     return prev
-                  }, {})
+                  }, {}), false
                 )
               })
             }
@@ -57,7 +57,7 @@ export function createOptionsLoaderPlugin(
             depNodes.reduce((prev, dNode) => {
               if (dNode) prev[dNode.name] = dNode?.value;
               return prev
-            }, {})
+            }, {}), true
           )
         })
 
